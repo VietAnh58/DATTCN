@@ -180,7 +180,7 @@
                                 data-display="static">
                                 <i class="minicart-icon"></i>
                                 @if (Session::has('Cart') && optional(Session::get('Cart'))->totalQuantity !== null)
-                                <span id="total-quantity-show" class="cart-count badge-circle">{{ Session::get('Cart')->getTotalQuantity() }}</span>
+                                <span id="total-quantity-show" class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity() }}</span>
                             @else
                                 <span id="total-quantity-show" class="cart-count badge-circle">0</span>
                             @endif

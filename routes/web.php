@@ -35,7 +35,9 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/addCart/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/deleteCart/{id}', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('/deleteListCart/{id}', [CartController::class, 'deleteListCart'])->name('cart.deleteList');
-Route::get('/updateCart/{id}/{qty}', [CartController::class, 'updateListCart'])->name('cart.update');
+// Route::get('/updateCart/{id}/{qty}', [CartCo ntroller::class, 'updateListCart'])->name('cart.update');
+Route::get('/updateListCart/{id}/{qty}', [CartController::class, 'updateListCart'])->name('cart.updateList');
+
 
 Route::prefix('category')->name('category.')->group(function () {
     Route::get('', [HomeController::class, 'category'])->name('index');

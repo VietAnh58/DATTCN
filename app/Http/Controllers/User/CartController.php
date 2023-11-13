@@ -60,4 +60,20 @@ class CartController extends Controller
 
         return view('blocks.frontend.product.list_cart');
     }
+
+    public function updateListCart(Request $request, $id, $quantity)
+    {
+        $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
+        $newCart = new Cart($oldCart);
+        $newCart->updateProductQuantity($id, $quantity);
+
+
+            $request->session()->put('Cart', $newCart);
+
+
+        return view('blocks.frontend.product.list_cart');
+    }
+
+
+    
 }

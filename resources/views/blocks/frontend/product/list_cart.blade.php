@@ -2,10 +2,11 @@
     <thead>
         <tr>
             <th class="thumbnail-col"></th>
-            <th style="width: 200px" class="product-col">Product</th>
-            <th class="price-col">Price</th>
-            <th class="qty-col">Quantity</th>
-            <th class="text-right">Subtotal</th>
+            <th style="width: 200px" class="product-col">Sản phẩm</th>
+            <th class="price-col">Giá</th>
+            <th class="qty-col">Số lượng</th>
+            <th class="total-col">Cập nhật</th>
+            <th class="text-right">Tổng thanh toán</th>
         </tr>
     </thead>
     <tbody>
@@ -33,10 +34,14 @@
                     <td>
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text"
-                                value="{{ $item['quantity'] }}">
+                            id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}" onchange="UpdateListItemCart({{ $item['productInfo']->id }})">
+
                         </div>
                     </td>
-                    <td class="text-right"><span
+                    <td>
+                        <a class="btn btn-sm" href="javascript:" onclick="UpdateListItemCart({{ $item['productInfo']->id }})" >Cập nhật</a>
+                    </td>
+                    <td class = "text-right"><span
                             class="subtotal-price">{{ number_format($item['productInfo']->price * $item['quantity']) }}VND</span>
                     </td>
                 </tr>
@@ -45,7 +50,6 @@
             <h1>khong co san pham</h1>
         @endif
     </tbody>
-
 
     <tfoot>
         <tr>
@@ -57,8 +61,7 @@
                                 <input type="text" class="form-control form-control-sm" placeholder="Coupon Code"
                                     required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-sm" type="submit">Apply
-                                        Coupon</button>
+                                    <button class="btn btn-sm" type="submit">Phiếu giảm giá</button>
                                 </div>
                             </div><!-- End .input-group -->
                         </form>
@@ -66,9 +69,9 @@
                 </div><!-- End .float-left -->
 
                 <div class="float-right">
-                    <button type="submit" class="btn btn-shop btn-update-cart">
-                        Update Cart
-                    </button>
+                    <a href="{{ route('cart.index') }}" class="btn btn-shop btn-update-cart">
+                        Cập nhật giỏ hàng
+                    </a>
                 </div><!-- End .float-right -->
             </td>
         </tr>

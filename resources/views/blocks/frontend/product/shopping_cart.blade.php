@@ -30,8 +30,8 @@
 
     <div class="dropdown-cart-total">
         <span>Tổng tiền:</span>
-        <input type="text" id="total-quantity" value="{{ session()->get('Cart')->totalQuantity }}">
-        <span>class="cart-total-price float-right">{{ number_format(session()->get('Cart')->getTotalPrice()) }}VND</span>
+        <input type="hidden" id="total-quantity" value="{{ session()->get('Cart')->totalQuantity }}">
+        <span class="cart-total-price float-right">{{ number_format(session()->get('Cart')->getTotalPrice()) }}VND</span>
     </div>
 @else
     <input type="hiden" id="total-quantity" value="0">
