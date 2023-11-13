@@ -26,7 +26,6 @@ class CartController extends Controller
             $newCart->addCart($product, $id);
 
             $request->session()->put('Cart', $newCart);
-
         }
         return view('blocks.frontend.product.shopping_cart');
     }
@@ -68,12 +67,31 @@ class CartController extends Controller
         $newCart->updateProductQuantity($id, $quantity);
 
 
-            $request->session()->put('Cart', $newCart);
+        $request->session()->put('Cart', $newCart);
 
 
         return view('blocks.frontend.product.list_cart');
     }
 
+    public function updateAllListCart(Request $request)
+    {
+        // var_dump($request->all());
+        // dd($request->data);
+        // $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
+        // $newCart = new Cart($oldCart);
+        // $newCart->updateProductQuantity($id, $quantity);
 
-    
+
+        //     $request->session()->put('Cart', $newCart);
+
+        $data = $request->data;
+
+        foreach ($data as $item) {
+            $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
+            $newCart = new Cart($oldCart);
+            $newCart->updateProductQuantity($item['key'], $item['value']);
+            $request->session()->put('Cart', $newCart);
+
+        }
+    }
 }

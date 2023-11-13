@@ -29,10 +29,11 @@
                                         <th class="qty-col">Số lượng</th>
                                         <th class="total-col">Cập nhật</th>
                                         <th class="text-right">Tổng thanh toán</th>
+                                        <th class="text-right "><a href="javascript:" class="btn-remove"
+                                                title="Xóa toàn bọ sản phẩm"><span>×</span></a></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                            
                                     @if (session()->has('Cart') && session()->get('Cart')->totalQuantity > 0)
                                         @foreach (session()->get('Cart')->products as $item)
                                             <tr class="product-row">
@@ -42,7 +43,8 @@
                                                             <img src="{{ asset('storage/images') }}/{{ $item['productInfo']->image }}"
                                                                 alt="product" width="80" height="80">
                                                         </a>
-                                                        <a href="javascript:" onclick="DeleteListItemCart({{ $item['productInfo']->id }})"
+                                                        <a href="javascript:"
+                                                            onclick="DeleteListItemCart({{ $item['productInfo']->id }})"
                                                             class="btn-remove" title="Remove Product"><span>×</span></a>
                                                     </figure>
                                                 </td>
@@ -56,13 +58,18 @@
                                                 <td>
                                                     <div class="product-single-qty">
                                                         <input class="horizontal-quantity form-control" type="text"
-                                                           id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}">
+                                                            data-id="{{ $item['productInfo']->id }}"
+                                                            id="quantity-item-{{ $item['productInfo']->id }}"
+                                                            value="{{ $item['quantity'] }}">
+
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-sm" href="javascript:" onclick="UpdateListItemCart({{ $item['productInfo']->id }}) ">Cập nhật</a>
+                                                    <a class="btn btn-sm" href="javascript:"
+                                                        onclick="UpdateListItemCart({{ $item['productInfo']->id }})">Cập
+                                                        nhật</a>
                                                 </td>
-                                                <td class="text-right"><span
+                                                <td class = "text-right"><span
                                                         class="subtotal-price">{{ number_format($item['productInfo']->price * $item['quantity']) }}VND</span>
                                                 </td>
                                             </tr>
@@ -71,7 +78,7 @@
                                         <h1>khong co san pham</h1>
                                     @endif
                                 </tbody>
-                            
+
                                 <tfoot>
                                     <tr>
                                         <td colspan="5" class="clearfix">
@@ -79,18 +86,19 @@
                                                 <div class="cart-discount">
                                                     <form action="#">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control form-control-sm" placeholder="Coupon Code"
-                                                                required>
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                placeholder="Coupon Code" required>
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-sm" type="submit">Phiếu Giảm giá</button>
+                                                                <button class="btn btn-sm" type="submit">Phiếu giảm
+                                                                    giá</button>
                                                             </div>
                                                         </div><!-- End .input-group -->
                                                     </form>
                                                 </div>
                                             </div><!-- End .float-left -->
-                            
-                                            <div class="float-right">
-                                                <a href="{{ route('cart.index') }}" class="btn btn-shop btn-update-cart">
+
+                                            <div class="float-right edit-all">
+                                                <a href="javascript:" class="btn btn-shop btn-update-cart">
                                                     Cập nhật giỏ hàng
                                                 </a>
                                             </div><!-- End .float-right -->
@@ -98,7 +106,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            
+
                         </div>
                     </div><!-- End .cart-table-container -->
                 </div><!-- End .col-lg-8 -->
@@ -217,19 +225,20 @@
                 alertify.error('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.');
             });
 
-            
+
 
         }
+
         function UpdateListItemCart(productId) {
-    console.log('ID sản phẩm trong hàm:', productId);
-    // Thêm các hành động xử lý khác tại đây...
-}
+            console.log('ID sản phẩm trong hàm:', productId);
+            // Thêm các hành động xử lý khác tại đây...
+        }
 
 
         function UpdateListItemCart(id) {
             $("#quantity-item-" + id).val();
             $.ajax({
-                url: '/updateListCart/' + id +"/" + $("#quantity-item-" + id).val(),
+                url: '/updateListCart/' + id + "/" + $("#quantity-item-" + id).val(),
                 type: "GET",
             }).done(function(response) {
                 RenderListCart(response);
@@ -242,12 +251,64 @@
         }
 
         function RenderListCart(response) {
-                $("#list-cart-item").empty();
-                $("#list-cart-item").html(response);
+            $("#list-cart-item").empty();
+            $("#list-cart-item").html(response);
 
-            }
-            
-        
+        }
+
+        // $(".edit-all").on("click", function(){
+        //     var lists = [];
+        //     $(".table-cart tbody tr td").each(function(){
+        //         $(this).find("input").each(function() {
+        //             var element = {key: $(this).data("id"), value: $(this).val()};
+        //             lists.push(element);
+        //         })
+        //     });
+        //     // console.log(lists);
+        //     $.ajax({
+        //         url: '/updateAllListCart',
+        //         type: "POST",
+        //         data: {
+        //             "_token" : "{{ csrf_token() }}",
+        //             "data" : lists
+        //         }
+        //     }).done(function(response) {
+        //         // RenderListCart(response);
+
+        //         alertify.success('Cập nhật tất cả giỏ hàng thành công.');
+
+        //     }).fail(function(jqXHR, textStatus, errorThrown) {
+        //         alertify.error('Có lỗi xảy ra khi cập nhật giỏ hàng.');
+        //     });
+        // })
+        $(".edit-all").on("click", function() {
+            var lists = [];
+
+            $(".table-cart tbody tr").each(function() {
+                var productId = $(this).find('input').data("id");
+                var quantity = $(this).find('input').val();
+
+                var element = {
+                    key: productId,
+                    value: quantity
+                };
+                lists.push(element);
+            });
+
+            $.ajax({
+                url: '/updateAllListCart',
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "data": lists
+                }
+            }).done(function(response) {
+                location.reload();
+                // RenderListCart(response);
+                alertify.success('Cập nhật tất cả giỏ hàng thành công.');
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                alertify.error('Có lỗi xảy ra khi cập nhật giỏ hàng.');
+            });
+        });
     </script>
-
 @endsection

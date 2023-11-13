@@ -37,6 +37,7 @@ Route::get('/deleteCart/{id}', [CartController::class, 'delete'])->name('cart.de
 Route::get('/deleteListCart/{id}', [CartController::class, 'deleteListCart'])->name('cart.deleteList');
 // Route::get('/updateCart/{id}/{qty}', [CartCo ntroller::class, 'updateListCart'])->name('cart.update');
 Route::get('/updateListCart/{id}/{qty}', [CartController::class, 'updateListCart'])->name('cart.updateList');
+Route::post('/updateAllListCart', [CartController::class, 'updateAllListCart'])->name('cart.updateAllList');
 
 
 Route::prefix('category')->name('category.')->group(function () {

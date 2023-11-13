@@ -7,10 +7,11 @@
             <th class="qty-col">Số lượng</th>
             <th class="total-col">Cập nhật</th>
             <th class="text-right">Tổng thanh toán</th>
+            <th class="text-right "><a href="javascript:" class="btn-remove" title="Remove Product"><span>×</span></a>
+            </th>
         </tr>
     </thead>
     <tbody>
-
         @if (session()->has('Cart') && session()->get('Cart')->totalQuantity > 0)
             @foreach (session()->get('Cart')->products as $item)
                 <tr class="product-row">
@@ -34,12 +35,15 @@
                     <td>
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text"
-                            id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}" onchange="UpdateListItemCart({{ $item['productInfo']->id }})">
+                                data-id="{{ $item['productInfo']->id }}"
+                                id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}"
+                                onchange="UpdateListItemCart({{ $item['productInfo']->id }})">
 
                         </div>
                     </td>
                     <td>
-                        <a class="btn btn-sm" href="javascript:" onclick="UpdateListItemCart({{ $item['productInfo']->id }})" >Cập nhật</a>
+                        <a class="btn btn-sm" href="javascript:"
+                            onclick="UpdateListItemCart({{ $item['productInfo']->id }})">Cập nhật</a>
                     </td>
                     <td class = "text-right"><span
                             class="subtotal-price">{{ number_format($item['productInfo']->price * $item['quantity']) }}VND</span>
@@ -68,7 +72,7 @@
                     </div>
                 </div><!-- End .float-left -->
 
-                <div class="float-right">
+                <div class="float-right edit-all">
                     <a href="{{ route('cart.index') }}" class="btn btn-shop btn-update-cart">
                         Cập nhật giỏ hàng
                     </a>

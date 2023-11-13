@@ -29,7 +29,7 @@
     @endif
           <div class="box">
             <div class="box-header">
-                <a href="{{ route('admin.product.index') }}" class="btn btn-success">Trờ về </a>
+                <a href="{{ route('admin.product.create') }}" class="btn btn-success">Thêm sản phẩm </a>
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -73,8 +73,8 @@
                         <td>{{ $item->category->title }}</td>
                         <td>{{ $item->inventory_id }}</td>
                         <td>
-                          <a href="{{ route('admin.product.restore', $item->id) }}" class="btn btn-success">Khôi phục</a>
-                          <a href="{{ route('admin.product.force_delete', $item->id) }}" class="btn btn-danger">Xóa</a>
+                          <a href="{{ route('admin.product.edit', $item->id) }}" class="btn btn-success">Sửa</a>
+                          <a href="{{ route('admin.category.delete', $item->id) }}" class="btn btn-danger">Xóa</a>
                           </td>
                         </tr>
                 @endforeach
