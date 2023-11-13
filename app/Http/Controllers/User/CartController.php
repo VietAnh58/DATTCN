@@ -65,33 +65,34 @@ class CartController extends Controller
         $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
         $newCart = new Cart($oldCart);
         $newCart->updateProductQuantity($id, $quantity);
-
-
         $request->session()->put('Cart', $newCart);
-
 
         return view('blocks.frontend.product.list_cart');
     }
 
     public function updateAllListCart(Request $request)
     {
-        // var_dump($request->all());
-        // dd($request->data);
-        // $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
-        // $newCart = new Cart($oldCart);
-        // $newCart->updateProductQuantity($id, $quantity);
-
-
-        //     $request->session()->put('Cart', $newCart);
-
         $data = $request->data;
-
         foreach ($data as $item) {
             $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
             $newCart = new Cart($oldCart);
             $newCart->updateProductQuantity($item['key'], $item['value']);
             $request->session()->put('Cart', $newCart);
-
         }
+    }
+
+    public function deleteAllListCart(Request $request)
+    {
+        $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
+        $newCart = new Cart($oldCart);
+        $newCart->clearCart();
+
+        if (count($newCart->products)) {
+            $request->session()->put('Cart', $newCart);
+        } else {
+            $request->session()->forget('Cart');
+        }
+
+        return view('blocks.frontend.product.list_cart');
     }
 }

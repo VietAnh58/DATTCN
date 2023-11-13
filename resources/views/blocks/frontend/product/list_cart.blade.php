@@ -51,7 +51,12 @@
                 </tr>
             @endforeach
         @else
-            <h1>khong co san pham</h1>
+        <table class="table table-cart">
+            <tbody>
+                <td rowspan="6"><h1>khong co san pham</h1></td>
+            </tbody>
+        </table>
+       
         @endif
     </tbody>
 
