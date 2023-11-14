@@ -14,6 +14,11 @@ class ParentCategory extends Model
         'title',
         'desc',
     ];
-
+    
+    public function menu()
+        {
+            return $this->belongsTo(Menu::class, 'id');
+        }
+    
 
 }

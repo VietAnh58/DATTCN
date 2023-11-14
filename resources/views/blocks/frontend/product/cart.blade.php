@@ -59,7 +59,6 @@
                                                         <input class="horizontal-quantity form-control" type="text"
                                                             data-id="{{ $item['productInfo']->id }}"
                                                             id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}">
-                            
                                                     </div>
                                                 </td>
                                                 <td>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Admin_UserController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HomeController;
@@ -74,6 +75,13 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
         Route::get('restore/{id}', [ProductController::class, 'restore'])->name('restore');
         Route::get('force_delete/{id}', [ProductController::class, 'force_delete'])->name('force_delete');
     });
+    Route::resource('menu', MenuController::class)->except(['show']);
+    Route::prefix('menu')->name('menu.')->group(function () {
+        Route::get('trash', [MenuController::class, 'trash'])->name('trash');
+        Route::get('restore/{id}', [MenuController::class, 'restore'])->name('restore');
+        Route::get('force_delete/{id}', [MenuController::class, 'force_delete'])->name('force_delete');
+    });
+
 });
 
 // Route::get('/admin', function () {

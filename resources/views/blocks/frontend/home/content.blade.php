@@ -259,8 +259,14 @@
                                     </div>
                                     <!-- End .product-container -->
                                     <div class="price-box">
-                                        <span class="product-price">{{number_format($item->sale_price) }}VND</span>
-                                        <span class="old-price">{{number_format($item->price) }}VND</span>
+                                        @if ($item->sale_price > 0)
+                                            <span class="product-price">{{number_format($item->sale_price) }}VND</span>
+                                            <span class="old-price">{{number_format($item->price) }}VND</span>
+                                        @else
+                                        <span class="product-price">{{number_format($item->price) }}VND</span>
+
+                                        @endif
+                                        
                                         {{-- <span class="product-price">$49.00</span> --}}
                                     </div>
                                     <!-- End .price-box -->
@@ -304,9 +310,13 @@
                                     </div>
                                     <!-- End .product-container -->
                                     <div class="price-box">
-                                        <span class="product-price">{{number_format($item->sale_price) }}VND</span>
-                                        <span class="old-price">{{number_format($item->price) }}VND</span>
-                                        {{-- <span class="product-price">$49.00</span> --}}
+                                        @if ($item->sale_price > 0)
+                                            <span class="product-price">{{number_format($item->sale_price) }}VND</span>
+                                            <span class="old-price">{{number_format($item->price) }}VND</span>
+                                        @else
+                                        <span class="product-price">{{number_format($item->price) }}VND</span>
+
+                                        @endif
                                     </div>
                                     <!-- End .price-box -->
                                 </div>
@@ -348,8 +358,13 @@
                                     </div>
                                     <!-- End .product-container -->
                                     <div class="price-box">
-                                        <span class="product-price">{{number_format($item->sale_price) }}VND</span>
-                                        <span class="old-price">{{number_format($item->price) }}VND</span>
+                                        @if ($item->sale_price > 0)
+                                            <span class="product-price">{{number_format($item->sale_price) }}VND</span>
+                                            <span class="old-price">{{number_format($item->price) }}VND</span>
+                                        @else
+                                        <span class="product-price">{{number_format($item->price) }}VND</span>
+
+                                        @endif
                                     </div>
                                     <!-- End .price-box -->
                                 </div>

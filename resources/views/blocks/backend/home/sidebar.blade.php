@@ -45,6 +45,7 @@
         <ul class="treeview-menu">
           <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-circle-o"></i> Quản lý danh mục</a></li>
           <li><a href="{{ route('admin.product.index') }}"><i class="fa fa-circle-o"></i> Quản lý sản phẩm</a></li>
+          <li><a href="{{ route('admin.menu.index') }}"><i class="fa fa-circle-o"></i> Quản lý menu</a></li>
         </ul>
       </li>
       

@@ -117,7 +117,7 @@
                         <button class="mobile-menu-toggler text-primary mr-2" type="button">
                             <i class="fas fa-bars"></i>
                         </button>
-                        <a href="demo4.html" class="logo">
+                        <a href="{{ route('index') }}" class="logo">
                             <img src="{{ asset('frontend/') }}/assets/images/logo.png" width="111" height="44"
                                 alt="Porto Logo">
                         </a>
@@ -263,7 +263,7 @@
                     <nav class="main-nav w-100">
                         <ul class="menu">
                             <li>
-                                <a href="demo4.html">Home</a>
+                                <a href="{{ route('index') }}">Home</a>
                             </li>
                             <li>
                                 <a href="category.html">Categories</a>
@@ -557,7 +557,7 @@
             <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
             <nav class="mobile-nav">
                 <ul class="mobile-menu">
-                    <li><a href="demo4.html">Home</a></li>
+                    <li><a href="{{ route('index') }}">Home</a></li>
                     <li>
                         <a href="category.html">Categories</a>
                         <ul>
@@ -700,7 +700,7 @@
 
     <div class="sticky-navbar">
         <div class="sticky-info">
-            <a href="demo4.html">
+            <a href="{{ route('index') }}">
                 <i class="icon-home"></i>Home
             </a>
         </div>

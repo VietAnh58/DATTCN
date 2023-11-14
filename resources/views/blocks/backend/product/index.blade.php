@@ -5,13 +5,12 @@
 @section('content')
 
  @section('danhsach')
-    Danh sách sản phẩm
+    Danh sách Sản phẩm
 @endsection
 
 @section('title')
-    Danh sách sản phẩm
+    Trang Sản phẩm
 @endsection 
-
     <section class="content">
 
       <!-- Default box -->
@@ -29,7 +28,8 @@
     @endif
           <div class="box">
             <div class="box-header">
-                <a href="{{ route('admin.product.create') }}" class="btn btn-success">Thêm sản phẩm </a>
+           <a href="{{ route('admin.product.create') }}" class="btn btn-success">+Thêm mới Sản phẩm</a>
+
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -46,13 +46,15 @@
                 <tbody>
                   <tr>
                     <th>ID</th>
-                  <th style="width:150px">Tên Sản phẩm</th>
-                  <th style="width:150px">Bí danh</th>
+                  <th style="width:100px">Tên Sản phẩm</th>
+                  <th style="width:100px">Bí danh</th>
                   <th>Giá sản phẩm</th>
                   <th>Giá giảm</th>
                   <th>Ảnh sản phẩm</th>
                   <th>Danh mục</th>
-                  <th>ID kho hàng</th>
+                  <th>Sản phẩm tiêu biểu</th>
+                  <th>Sản phẩm mới</th>
+                  <th>Bán chạy</th>
                   <th>Tùy chọn</th>
                 </tr>
                 @if($products->isEmpty())
@@ -68,18 +70,43 @@
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->sale_price }}</td>
                         <td>
+                          
                           <img src="{{ asset('storage/images') }}/{{ $item->image }}" alt="" width="150px">
                         </td>
                         <td>{{ $item->category->title }}</td>
-                        <td>{{ $item->inventory_id }}</td>
+                        {{-- <td>{{ $item->inventory_id }}</td> --}}
+                        <td>@if ( $item->is_featured == 1)
+                          <span class="label label-success">Hiển thị</span>
+                        @else
+                          <span class="label label-danger">Đang ẩn</span>
+                        @endif</td>
+                        <td>@if ( $item->is_new == 1)
+                          <span class="label label-success">Hiển thị</span>
+                        @else
+                          <span class="label label-danger">Đang ẩn</span>
+                        @endif</td>
+                        <td>@if ( $item->is_best_seller == 1)
+                          <span class="label label-success">Hiển thị</span>
+                        @else
+                          <span class="label label-danger">Đang ẩn</span>
+                        @endif</td>
+                        <td  colspan="2">
+                            <a href="{{ route('admin.product.edit', $item) }}" class="btn btn-success">Sửa</a> 
+                        </td>
                         <td>
-                          <a href="{{ route('admin.product.edit', $item->id) }}" class="btn btn-success">Sửa</a>
-                          <a href="{{ route('admin.category.delete', $item->id) }}" class="btn btn-danger">Xóa</a>
-                          </td>
-                        </tr>
+                          <form id="delete-form-{{ $item->id }}" action="{{ route('admin.product.destroy', $item) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $item->id }})">Xóa</button>
+                        </form>
+                        
+                        </td>
+                    </tr>
                 @endforeach
             @endif
-
+            <tr>
+              <td><a href="{{ route('admin.product.trash') }}" class="btn btn-primary"><i class="fa-solid fa-trash-can"></i> Thùng rác</a></td>
+            </tr>
               </tbody></table>
             </div>
             <!-- /.box-body -->
@@ -90,4 +117,16 @@
 
     </section>
 
+@endsection
+
+@section('alert')
+<script>
+  function confirmDelete(itemId) {
+      if (confirm('Bạn có chắc chắn muốn xóa mục này không?')) {
+          // Nếu người dùng đồng ý xóa, thì gửi biểu mẫu xóa
+          document.getElementById('delete-form-' + itemId).submit();
+      }
+  }
+  </script>
+  
 @endsection

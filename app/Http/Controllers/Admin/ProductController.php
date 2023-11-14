@@ -36,7 +36,6 @@ class ProductController extends Controller
      */
     public function store(StoreRequestProduct $request)
     {
-        // dd($request->all());
         $fileName = $request->image->getClientOriginalName();
         $request->image->storeAs('public/images', $fileName);
         $request->merge(['image' => $fileName]);
@@ -50,31 +49,28 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'description' => $request->description,
                 'inventory_id' => $request->inventory_id,
-                'is_featured' => $request->is_featured ? 1:0,
-                'is_new' => $request->is_new ? 1:0,
-                'is_best_seller' => $request->is_best_seller ? 1:0,
+                'is_featured' => $request->is_featured ? 1 : 0,
+                'is_new' => $request->is_new ? 1 : 0,
+                'is_best_seller' => $request->is_best_seller ? 1 : 0,
                 'image' => $fileName,
 
             ]);
-            if($product && $request->hasFile('images')) {
-                foreach ($request->images as $key => $value){
-                    $fileNames = $value -> getClientOriginalName();
+            if ($product && $request->hasFile('images')) {
+                foreach ($request->images as $key => $value) {
+                    $fileNames = $value->getClientOriginalName();
                     $value->storeAs('public/images', $fileNames);
                     ImageProduct::create([
                         'product_id' => $product->id,
-                        'image'=>$fileNames
+                        'image' => $fileNames
                     ]);
                 }
             }
-        
             session()->flash('success', 'Tạo sản phẩm thành công');
             return redirect()->route('admin.product.index');
         } catch (\Exception $e) {
             session()->flash('error', 'Lỗi khi tạo sản phẩm: ' . $e->getMessage());
             return redirect()->route('admin.product.index');
         }
-        
-        
     }
 
     /**
@@ -100,58 +96,58 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product)
-{
-    try {
-        // Lưu lại các trường thông tin của sản phẩm
-        $product->product_name = $request->title;
-        $product->price = $request->price;
-        $product->alias = Str::slug($request->title);
-        $product->sale_price = $request->sale_price;
-        $product->description = $request->description;
-        $product->inventory_id = $request->store_id;
-        $product->category_id = $request->category_id;
-        $product->is_featured = $request->is_featured;
-        $product->is_new = $request->is_new;
-        $product->is_best_seller = $request->is_best_seller;
+    {
+        try {
+            // Lưu lại các trường thông tin của sản phẩm
+            $product->product_name = $request->title;
+            $product->price = $request->price;
+            $product->alias = Str::slug($request->title);
+            $product->sale_price = $request->sale_price;
+            $product->description = $request->description;
+            $product->inventory_id = $request->store_id;
+            $product->category_id = $request->category_id;
+            $product->is_featured = $request->is_featured;
+            $product->is_new = $request->is_new;
+            $product->is_best_seller = $request->is_best_seller;
 
-        // Lưu hình ảnh sản phẩm chính
-        if ($request->hasFile('image')) {
-            $fileName = $request->image->getClientOriginalName();
-            $request->image->storeAs('public/images', $fileName);
-            $product->image = $fileName;
-        }
+            // Lưu hình ảnh sản phẩm chính
+            if ($request->hasFile('image')) {
+                $fileName = $request->image->getClientOriginalName();
+                $request->image->storeAs('public/images', $fileName);
+                $product->image = $fileName;
+            }
 
-        $product->save();
+            $product->save();
 
-        $existingImages = ImageProduct::where('product_id', $product->id)->get();
+            $existingImages = ImageProduct::where('product_id', $product->id)->get();
 
-        // Lưu hình ảnh mô tả (nếu có)
-        if ($request->hasFile('images')) {
-            $newImages = $request->images;
-        
-            foreach ($existingImages as $key => $existingImage) {
-                if (isset($newImages[$key])) {
-                    $fileNames = $newImages[$key]->getClientOriginalName();
-                    $newImages[$key]->storeAs('public/images', $fileNames);
-        
-                    // Cập nhật dữ liệu cho từng hình ảnh
-                    $existingImage->image = $fileNames;
-                    $existingImage->save();
+            // Lưu hình ảnh mô tả (nếu có)
+            if ($request->hasFile('images')) {
+                $newImages = $request->images;
+
+                foreach ($existingImages as $key => $existingImage) {
+                    if (isset($newImages[$key])) {
+                        $fileNames = $newImages[$key]->getClientOriginalName();
+                        $newImages[$key]->storeAs('public/images', $fileNames);
+
+                        // Cập nhật dữ liệu cho từng hình ảnh
+                        $existingImage->image = $fileNames;
+                        $existingImage->save();
+                    }
                 }
             }
-        }
-        
 
-                session()->flash('success', 'Cập nhật sản phẩm thành công');
-            } catch (\Exception $e) {
-                session()->flash('error', 'Lỗi khi cập nhật sản phẩm: ' . $e->getMessage());
-            }
 
-            return redirect()->route('admin.product.index');
+            session()->flash('success', 'Cập nhật sản phẩm thành công');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Lỗi khi cập nhật sản phẩm: ' . $e->getMessage());
         }
 
+        return redirect()->route('admin.product.index');
+    }
 
-    
+
+
     /**
      * Remove the specified resource from storage.
      */
@@ -166,19 +162,21 @@ class ProductController extends Controller
     }
 
 
-    public function trash(){
+    public function trash()
+    {
         $products = Product::onlyTrashed()->get();
         return view('blocks.backend.product.trash', compact('products'));
     }
 
-    public function restore($id){
+    public function restore($id)
+    {
         Product::withTrashed()->where('id', $id)->restore();
         return redirect()->route('admin.product.index')->with('success', 'Khôi phục sản phẩm thành công');
     }
-    
-    public function force_delete($id){
+
+    public function force_delete($id)
+    {
         Product::withTrashed()->where('id', $id)->forceDelete();
         return redirect()->route('admin.product.trash')->with('success', 'Xóa sản phẩm khỏi thùng rác thành công');
     }
-
 }

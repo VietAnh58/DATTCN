@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ImageProduct;
+use App\Models\Menu;
+use App\Models\ParentCategory;
 use App\Models\Product;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
@@ -29,9 +31,15 @@ class HomeController extends Controller
 
         $top_rate_product = Product::where('is_featured', 1)->take(3)->get();
 
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+
         return view('blocks.frontend.home.content', 
         compact('featured_products', 'featured_product_images','best_seller_products', 'new_products',
-        'top_rate_product'));
+        'top_rate_product', 'menus','parentCategory','category'));
     }
 
     public function detail_product($alias) {
@@ -78,7 +86,8 @@ class HomeController extends Controller
             $images = ImageProduct::where('product_id', $item->id)->get();
             $second_product_images[$item->id] = $images;
         }
-
         return view('blocks.frontend.category.index',compact('products', 'second_product_images'));
     }
+
+    
 }
