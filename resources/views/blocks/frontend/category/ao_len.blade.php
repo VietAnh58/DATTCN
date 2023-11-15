@@ -101,7 +101,7 @@
                     </nav>
 
                     <div class="row">
-                        @foreach ($products as $item)
+                        @foreach ($ao_len as $item)
                             <div class="col-6 col-sm-4">
                                 <div class="product-default">
                                     <figure>
@@ -143,10 +143,10 @@
 
                                         <div class="price-box">
                                             @if ($item->sale_price > 0)
-                                                <span class="old-price">{{ number_format($item->price)  }}VND</span>
-                                                <span class="product-price">{{ number_format($item->sale_price) }}VND</span>
+                                                <span class="old-price">{{ $item->price }}VND</span>
+                                                <span class="product-price">{{ $item->sale_price }}VND</span>
                                             @else
-                                                <span class="product-price">{{ number_format($item->price) }}VND</span>
+                                                <span class="product-price">{{ $item->price }}VND</span>
                                             @endif
                                         </div>
                                         <!-- End .price-box -->

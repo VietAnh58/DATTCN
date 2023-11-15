@@ -8,8 +8,18 @@
                             href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
                     </h4>
                     <span class="cart-product-info">
-                        <span class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span> ×
-                        {{ $item['quantity'] }}
+                        @if ($item['productInfo']->sale_price > 0)
+                            <span
+                                class="cart-product-qty">{{ number_format($item['productInfo']->sale_price) }}VND</span>
+                            ×
+                            {{ $item['quantity'] }}
+                        @else
+                            <span
+                                class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span>
+                            ×
+                            {{ $item['quantity'] }}
+                        @endif
+
                     </span>
                 </div>
                 <!-- End .product-details -->
@@ -31,7 +41,8 @@
     <div class="dropdown-cart-total">
         <span>Tổng tiền:</span>
         <input type="hidden" id="total-quantity" value="{{ session()->get('Cart')->totalQuantity }}">
-        <span class="cart-total-price float-right">{{ number_format(session()->get('Cart')->getTotalPrice()) }}VND</span>
+        <span
+            class="cart-total-price float-right">{{ number_format(session()->get('Cart')->calculateTotalPrice()) }}VND</span>
     </div>
 @else
     <input type="hiden" id="total-quantity" value="0">

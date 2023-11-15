@@ -44,6 +44,30 @@ Route::post('/updateAllListCart', [CartController::class, 'updateAllListCart'])-
 
 Route::prefix('category')->name('category.')->group(function () {
     Route::get('', [HomeController::class, 'category'])->name('index');
+    Route::prefix('ao-nu')->name('ao-nu.')->group(function () {  
+        // Route::get('', [HomeController::class, 'category'])->name('index');
+        Route::get('/ao-polo', [HomeController::class, 'ao_polo'])->name('ao-polo');
+        Route::get('/ao-ni', [HomeController::class, 'ao_ni'])->name('ao-ni');
+        Route::get('/ao-len', [HomeController::class, 'ao_len'])->name('ao-len');
+    });
+    Route::prefix('quan-nu')->name('quan-nu.')->group(function () {  
+        // Route::get('', [HomeController::class, 'category'])->name('index');
+        Route::get('/quan-au', [HomeController::class, 'quan_au'])->name('quan-au');
+        Route::get('/quan-short', [HomeController::class, 'quan_short'])->name('quan-short');
+        Route::get('/quan-kaki', [HomeController::class, 'quan_kaki'])->name('quan-kaki');
+    });
+    Route::prefix('ao-nam')->name('ao-nam.')->group(function () {  
+        // Route::get('', [HomeController::class, 'category'])->name('index');
+        Route::get('/ao-polo-nam', [HomeController::class, 'ao_polo_nam'])->name('ao-polo-nam');
+        Route::get('/ao-khoac-nam', [HomeController::class, 'ao_khoac_nam'])->name('ao-khoac-nam');
+        Route::get('/ao-ni-nam', [HomeController::class, 'ao_ni_nam'])->name('ao-ni-nam');
+    });
+    Route::prefix('quan-nam')->name('quan-nam.')->group(function () {  
+        // Route::get('', [HomeController::class, 'category'])->name('index');
+        Route::get('/quan-au-nam', [HomeController::class, 'quan_au_nam'])->name('quan-au-nam');
+        Route::get('/quan-short-nam', [HomeController::class, 'quan_short_nam'])->name('quan-short-nam');
+        Route::get('/quan-jeans-nam', [HomeController::class, 'quan_jeans_nam'])->name('quan-jeans-nam');
+    });
 });
 
 
@@ -81,7 +105,6 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
         Route::get('restore/{id}', [MenuController::class, 'restore'])->name('restore');
         Route::get('force_delete/{id}', [MenuController::class, 'force_delete'])->name('force_delete');
     });
-
 });
 
 // Route::get('/admin', function () {

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Helper;
 
 class Cart
@@ -9,8 +10,7 @@ class Cart
 
     public function __construct($cart = null)
     {
-        if ($cart) 
-        {
+        if ($cart) {
             $this->products = $cart->products;
             $this->totalQuantity = $cart->totalQuantity;
             $this->totalPrice = $cart->totalPrice;
@@ -25,20 +25,22 @@ class Cart
             'productInfo' => $product,
             'price' => 0,
         ];
-        if($this->products)
-        {
-            if(array_key_exists($id, $this->products))
-            {
-                $newProduct = $this->products[$id];
-            }
-        } 
+
+        if ($this->products && array_key_exists($id, $this->products)) {
+            $newProduct = $this->products[$id];
+        }
+
         $newProduct['quantity']++;
-        $newProduct['price'] = $newProduct['quantity'] * $product->price;
+
+        $price = ($product->sale_price > 0) ? $product->sale_price : $product->price;
+        $newProduct['price'] = $newProduct['quantity'] * $price;
+
         $this->products[$id] = $newProduct;
         $this->totalQuantity++;
-        $this->totalPrice += $product->price; 
+        $this->totalPrice += $newProduct['price'];
     }
-    
+
+
     public function getTotalPrice()
     {
         return $this->totalPrice;
@@ -64,7 +66,7 @@ class Cart
     public function removeProduct($id)
     {
         $this->totalQuantity -= $this->products[$id]['quantity'];
-        $this->totalPrice  -= $this->products[$id]['price']; 
+        $this->totalPrice  -= $this->products[$id]['price'];
         unset($this->products[$id]);
     }
 
@@ -77,7 +79,12 @@ class Cart
 
     public function calculateTotalPrice()
     {
-        // Implement calculating the total price of all products in the cart here.
+        $totalPrice = 0;
+
+        foreach ($this->products as $product) {
+            $totalPrice += $product['price'];
+        }
+
+        return $totalPrice;
     }
 }
-?>

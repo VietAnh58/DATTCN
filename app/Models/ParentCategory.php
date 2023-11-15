@@ -12,6 +12,7 @@ class ParentCategory extends Model
     protected $fillable = [
         'id',
         'title',
+        'alias',
         'desc',
     ];
     

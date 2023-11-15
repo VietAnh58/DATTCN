@@ -159,7 +159,14 @@
                 <div class="dropdown cart-dropdown">
                     <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="minicart-icon"></i>
-                        <span class="cart-count badge-circle">3</span>
+                        
+
+                                @if (Session::has('Cart') && optional(Session::get('Cart'))->totalQuantity !== null)
+                                    <span id="total-quantity-show"
+                                        class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity }}</span>
+                                @else
+                                    <span id="total-quantity-show" class="cart-count badge-circle">0</span>
+                                @endif
                     </a>
 
                     <div class="cart-overlay"></div>
@@ -171,37 +178,62 @@
                             <div class="dropdown-cart-header">Giỏ hàng</div>
                             <!-- End .dropdown-cart-header -->
 
-                            {{-- <div class="dropdown-cart-products">
-                                
-                                <div class="product">
-                                    <div class="product-details">
-                                        <h4 class="product-title">
-                                            <a href="demo1-product.html">{{ $value['product_name'] }}</a>
-                                        </h4>
-
-                                        <span class="cart-product-info">
-                                            <span class="cart-product-qty">{{ $value['quantity'] }}x</span> {{ number_format($value['price']) }}
-                                        </span>
-                                    </div>
-
-                                    <figure class="product-image-container">
-                                        <a href="demo1-product.html" class="product-image">
-                                            <img src="{{ asset('storage/images/')}}/{{ $value['image'] }}" alt="product" width="80" height="80">
-                                        </a>
-
-                                        <a href="#" class="btn-remove" title="Remove Product"><span>×</span></a>
-                                    </figure>
+                            <div id="change-item-cart">
+                                @if (session()->has('Cart') && session()->get('Cart')->totalQuantity > 0)
+                                <div class="dropdown-cart-products">
+                                    @foreach (session()->get('Cart')->products as $item)
+                                        <div class="product">
+                                            <div class="product-details">
+                                                <h4 class="product-title">
+                                                    <a
+                                                        href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
+                                                </h4>
+                                                <span class="cart-product-info">
+                                                    @if ($item['productInfo']->sale_price > 0)
+                                                        <span
+                                                            class="cart-product-qty">{{ number_format($item['productInfo']->sale_price) }}VND</span>
+                                                        ×
+                                                        {{ $item['quantity'] }}
+                                                    @else
+                                                        <span
+                                                            class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span>
+                                                        ×
+                                                        {{ $item['quantity'] }}
+                                                    @endif
+                            
+                                                </span>
+                                            </div>
+                                            <!-- End .product-details -->
+                            
+                                            <figure class="product-image-container">
+                                                <a href="product.html" class="product-image">
+                                                    <img src="{{ asset('storage/images') }}/{{ $item['productInfo']->image }}" alt="product"
+                                                        width="80" height="80">
+                                                </a>
+                                                <a href="#" data-id="{{ $item['productInfo']->id }}" class="btn-remove"
+                                                    title="Remove Product"><span>×</span></a>
+                                            </figure>
+                                        </div>
+                                    @endforeach
+                                    <!-- End .product -->
                                 </div>
-                                @endforeach
-     
-                            </div> --}}
+                                <!-- End .cart-product -->
+                            
+                                <div class="dropdown-cart-total">
+                                    <span>Tổng tiền:</span>
+                                    <input type="hidden" id="total-quantity" value="{{ session()->get('Cart')->totalQuantity }}">
+                                    <span
+                                        class="cart-total-price float-right">{{ number_format(session()->get('Cart')->calculateTotalPrice()) }}VND</span>
+                                </div>
+                            @else
+                                <input type="hiden" id="total-quantity" value="0">
+                                <h1>Không có sản phẩm</h1>
+                            @endif
+                            
+                            </div>
                             <!-- End .cart-product -->
 
-                            <div class="dropdown-cart-total">
-                                <span>Tổng tiền:</span>
-
-                                <span class="cart-total-price float-right">VND</span>
-                            </div>
+                            
                             <!-- End .dropdown-cart-total -->
 
                             <div class="dropdown-cart-action">

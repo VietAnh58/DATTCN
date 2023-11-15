@@ -179,19 +179,17 @@
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                 data-display="static">
                                 <i class="minicart-icon"></i>
+                                {{-- <input type="hidden" id="total-quantity"
+                                    value="{{ session()->get('Cart')->totalQuantity }}"> --}}
+
                                 @if (Session::has('Cart') && optional(Session::get('Cart'))->totalQuantity !== null)
-                                <span id="total-quantity-show" class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity() }}</span>
-                            @else
-                                <span id="total-quantity-show" class="cart-count badge-circle">0</span>
-                            @endif
-                            
-
-
+                                    <span id="total-quantity-show"
+                                        class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity }}</span>
+                                @else
+                                    <span id="total-quantity-show" class="cart-count badge-circle">0</span>
+                                @endif
                             </a>
-
-
                             <div class="cart-overlay"></div>
-
                             <div class="dropdown-menu mobile-cart">
                                 <a href="#" title="Close (Esc)" class="btn-close">×</a>
 
@@ -210,9 +208,18 @@
                                                                     href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
                                                             </h4>
                                                             <span class="cart-product-info">
-                                                                <span
-                                                                    class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span>
-                                                                × {{ $item['quantity'] }}
+                                                                @if ($item['productInfo']->sale_price > 0)
+                                                                    <span
+                                                                        class="cart-product-qty">{{ number_format($item['productInfo']->sale_price) }}VND</span>
+                                                                    ×
+                                                                    {{ $item['quantity'] }}
+                                                                @else
+                                                                    <span
+                                                                        class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span>
+                                                                    ×
+                                                                    {{ $item['quantity'] }}
+                                                                @endif
+
                                                             </span>
                                                         </div>
                                                         <!-- End .product-details -->
@@ -235,13 +242,16 @@
 
                                             <div class="dropdown-cart-total">
                                                 <span>Tổng tiền:</span>
-                                                
-                                                <span class="cart-total-price float-right">{{ number_format(session()->get('Cart')->getTotalPrice()) }}VND</span>
-                                                {{-- <span class="cart-total-price float-right">{{ number_format(session()->get('Cart')->totalQuantity()) }}VND</span> --}}
+                                                <input type="hidden" id="total-quantity"
+                                                    value="{{ session()->get('Cart')->totalQuantity }}">
+                                                <span
+                                                    class="cart-total-price float-right">{{ number_format(session()->get('Cart')->calculateTotalPrice()) }}VND</span>
                                             </div>
                                         @else
+                                            <input type="hiden" id="total-quantity" value="0">
                                             <h1>Không có sản phẩm</h1>
                                         @endif
+
 
                                     </div>
                                     <!-- End .dropdown-cart-total -->
