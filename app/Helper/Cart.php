@@ -40,6 +40,28 @@ class Cart
         $this->totalPrice += $newProduct['price'];
     }
 
+    public function addProductWithQuantity($product, $id, $quantity)
+    {
+        $newProduct = [
+            'quantity' => 0,
+            'productInfo' => $product,
+            'price' => 0,
+        ];
+
+        if ($this->products && array_key_exists($id, $this->products)) {
+            $newProduct = $this->products[$id];
+        }
+
+        $newProduct['quantity'] += $quantity;
+
+        $price = ($product->sale_price > 0) ? $product->sale_price : $product->price;
+        $newProduct['price'] = $newProduct['quantity'] * $price;
+
+        $this->products[$id] = $newProduct;
+        $this->totalQuantity += $quantity;
+        $this->totalPrice += $newProduct['price'];
+    }
+
 
     public function getTotalPrice()
     {

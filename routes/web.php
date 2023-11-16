@@ -34,6 +34,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/detail_product/{alias}', [HomeController::class, 'detail_product'])->name('detail_product');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/addCart/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/addCartWithQuantity/{id}/{qty}', [CartController::class, 'addCartWithQuantity'])->name('cart.addcart');
 Route::get('/deleteCart/{id}', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('/deleteListCart/{id}', [CartController::class, 'deleteListCart'])->name('cart.deleteList');
 // Route::get('/updateCart/{id}/{qty}', [CartCo ntroller::class, 'updateListCart'])->name('cart.update');

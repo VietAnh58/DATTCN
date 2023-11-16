@@ -30,6 +30,19 @@ class CartController extends Controller
         return view('blocks.frontend.product.shopping_cart');
     }
 
+    public function addCartWithQuantity(Request $request, $id, $quantity)
+    {
+        $product = Product::find($id);
+        if ($product) {
+            $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
+            $newCart = new Cart($oldCart);
+            $newCart->addProductWithQuantity($product, $id, $quantity);
+
+            $request->session()->put('Cart', $newCart);
+        }
+        return view('blocks.frontend.product.shopping_cart');
+    }
+
     public function delete(Request $request, $id)
     {
         $oldCart = $request->session()->has('Cart') ? $request->session()->get('Cart') : null;
