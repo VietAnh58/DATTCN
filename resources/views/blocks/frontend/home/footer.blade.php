@@ -6,12 +6,14 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6 pb-2 pb-sm-0">
                     <div class="widget">
-                        <h4 class="widget-title">About Us</h4>
+                        <h4 class="widget-title">Giới thiệu</h4>
                         <a href="demo1.html">
-                            <img src="{{ asset('frontend/')}}/assets/images/logo-footer.png" alt="Logo" class="logo-footer">
+                            <img src="{{ asset('frontend/') }}/assets/images/logo-footer.png" alt="Logo"
+                                class="logo-footer">
                         </a>
-                        <p class="m-b-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapibus lacus. Duis nec vestibulum magna, et dapibus lacus.</p>
-                        <a href="#" class="read-more text-white">read more...</a>
+                        <p class="m-b-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum
+                            magna, et dapibus lacus. Duis nec vestibulum magna, et dapibus lacus.</p>
+                        <a href="#" class="read-more text-white">Tìm hiểu thêm...</a>
                     </div>
                     <!-- End .widget -->
                 </div>
@@ -19,25 +21,32 @@
 
                 <div class="col-lg-3 col-sm-6 pb-4 pb-sm-0">
                     <div class="widget mb-2">
-                        <h4 class="widget-title mb-1 pb-1">Contact Info</h4>
+                        <h4 class="widget-title mb-1 pb-1">Thông tin liên hệ</h4>
                         <ul class="contact-info m-b-4">
                             <li>
-                                <span class="contact-info-label">Address:</span>123 Street Name, City, England
+                                <span class="contact-info-label">Địa chỉ:</span> 123 Tên Đường, Thành phố, Anh
                             </li>
                             <li>
-                                <span class="contact-info-label">Phone:</span><a href="tel:">(123) 456-7890</a>
+                                <span class="contact-info-label">Điện thoại:</span><a href="tel:">(123) 456-7890</a>
                             </li>
                             <li>
-                                <span class="contact-info-label">Email:</span> <a href="https://portotheme.com/cdn-cgi/l/email-protection#026f636b6e42677a636f726e672c616d6f"><span class="__cf_email__" data-cfemail="87eae6eeebc7e2ffe6eaf7ebe2a9e4e8ea">[email&#160;protected]</span></a>
+                                <span class="contact-info-label">Email:</span> <a
+                                    href="https://portotheme.com/cdn-cgi/l/email-protection#026f636b6e42677a636f726e672c616d6f"><span
+                                        class="__cf_email__"
+                                        data-cfemail="87eae6eeebc7e2ffe6eaf7ebe2a9e4e8ea">[email&#160;protected]</span></a>
                             </li>
                             <li>
-                                <span class="contact-info-label">Working Days/Hours:</span> Mon - Sun / 9:00 AM - 8:00 PM
+                                <span class="contact-info-label">Ngày/Giờ làm việc:</span> Thứ Hai - Chủ Nhật / 9:00 AM
+                                - 8:00 PM
                             </li>
                         </ul>
                         <div class="social-icons">
-                            <a href="{{ route('login') }}" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
-                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
-                            <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>
+                            <a href="{{ route('login') }}" class="social-icon social-facebook icon-facebook"
+                                target="_blank" title="Facebook"></a>
+                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank"
+                                title="Twitter"></a>
+                            <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank"
+                                title="Linkedin"></a>
                         </div>
                         <!-- End .social-icons -->
                     </div>
@@ -46,44 +55,42 @@
                 <!-- End .col-lg-3 -->
 
                 <div class="col-lg-3 col-sm-6 pb-2 pb-sm-0">
-                    <div class="widget">
-                        <h4 class="widget-title pb-1">Customer Service</h4>
-
-                        <ul class="links">
-                            <li><a href="#">Help & FAQs</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                            <li><a href="#">Shipping & Delivery</a></li>
-                            <li><a href="#">Orders History</a></li>
-                            <li><a href="#">Advanced Search</a></li>
-                            <li><a href="dashboard.html">My Account</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="demo1-about.html">About Us</a></li>
-                            <li><a href="#">Corporate Sales</a></li>
-                            <li><a href="#">Privacy</a></li>
-                        </ul>
-                    </div>
+                    <ul class="links">
+                        <li><a href="#">Trợ giúp & Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Theo dõi đơn hàng</a></li>
+                        <li><a href="#">Vận chuyển & Giao hàng</a></li>
+                        <li><a href="#">Lịch sử đơn hàng</a></li>
+                        <li><a href="#">Tìm kiếm nâng cao</a></li>
+                        <li><a href="dashboard.html">Tài khoản của tôi</a></li>
+                        <li><a href="#">Cơ hội nghề nghiệp</a></li>
+                        <li><a href="demo1-about.html">Về chúng tôi</a></li>
+                        <li><a href="#">Bán hàng doanh nghiệp</a></li>
+                        <li><a href="#">Quyền riêng tư</a></li>
+                    </ul>
+                    
                     <!-- End .widget -->
                 </div>
                 <!-- End .col-lg-3 -->
 
                 <div class="col-lg-3 col-sm-6 pb-0">
                     <div class="widget mb-1 mb-sm-3">
-                        <h4 class="widget-title">Popular Tags</h4>
+                        <h4 class="widget-title">Thẻ phổ biến</h4>
 
                         <div class="tagcloud">
-                            <a href="#">Bag</a>
-                            <a href="#">Black</a>
-                            <a href="#">Blue</a>
-                            <a href="#">Clothes</a>
-                            <a href="#">Fashion</a>
+                            <a href="#">Túi</a>
+                            <a href="#">Màu đen</a>
+                            <a href="#">Màu xanh</a>
+                            <a href="#">Quần áo</a>
+                            <a href="#">Thời trang</a>
                             <a href="#">Hub</a>
-                            <a href="#">Jean</a>
-                            <a href="#">Shirt</a>
-                            <a href="#">Skirt</a>
-                            <a href="#">Sports</a>
-                            <a href="#">Sweater</a>
-                            <a href="#">Winter</a>
+                            <a href="#">Quần jean</a>
+                            <a href="#">Áo sơ mi</a>
+                            <a href="#">Váy</a>
+                            <a href="#">Thể thao</a>
+                            <a href="#">Áo len</a>
+                            <a href="#">Mùa đông</a>
                         </div>
+                        
                     </div>
                     <!-- End .widget -->
                 </div>
@@ -103,10 +110,14 @@
 
             <div class="footer-right ml-auto mt-1 mt-sm-0">
                 <div class="payment-icons">
-                    <span class="payment-icon visa" style="background-image: url({{ asset('frontend/')}}/assets/images/payments/payment-visa.svg)"></span>
-                    <span class="payment-icon paypal" style="background-image: url({{ asset('frontend/')}}/assets/images/payments/payment-paypal.svg)"></span>
-                    <span class="payment-icon stripe" style="background-image: url({{ asset('frontend/')}}/assets/images/payments/payment-stripe.png)"></span>
-                    <span class="payment-icon verisign" style="background-image:  url({{ asset('frontend/')}}/assets/images/payments/payment-verisign.svg)"></span>
+                    <span class="payment-icon visa"
+                        style="background-image: url({{ asset('frontend/') }}/assets/images/payments/payment-visa.svg)"></span>
+                    <span class="payment-icon paypal"
+                        style="background-image: url({{ asset('frontend/') }}/assets/images/payments/payment-paypal.svg)"></span>
+                    <span class="payment-icon stripe"
+                        style="background-image: url({{ asset('frontend/') }}/assets/images/payments/payment-stripe.png)"></span>
+                    <span class="payment-icon verisign"
+                        style="background-image:  url({{ asset('frontend/') }}/assets/images/payments/payment-verisign.svg)"></span>
                 </div>
             </div>
         </div>

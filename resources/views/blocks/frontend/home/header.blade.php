@@ -4,14 +4,15 @@
 
 <div class="top-notice text-white bg-dark">
     <div class="container text-center">
-        <h5 class="d-inline-block mb-0">Get Up to <b>40% OFF</b> New-Season Styles</h5>
-        <a href="demo1-shop.html" class="category">MEN</a>
-        <a href="demo1-shop.html" class="category">WOMEN</a>
-        <small>* Limited time only.</small>
-        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        <h5 class="d-inline-block mb-0">Nhận giảm giá lên đến <b>40%</b> cho các mẫu mới mùa</h5>
+        <a href="demo1-shop.html" class="category">NAM</a>
+        <a href="demo1-shop.html" class="category">NỮ</a>
+        <small>* Chỉ trong thời gian có hạn.</small>
+        <button title="Đóng (Esc)" type="button" class="mfp-close">×</button>
     </div>
-    <!-- End .container -->
+    <!-- Kết thúc .container -->
 </div>
+
 <!-- End .top-notice -->
 
 <header class="header home">
@@ -19,12 +20,12 @@
         <div class="container">
             <div class="header-left">
                 <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
-                    <a href="#" class="pl-0"><i class="flag-us flag"></i>ENG</a>
+                    <a href="#" class="pl-0"><i class="flag-us flag"></i>Tiếng Việt</a>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="#"><i class="flag-us flag mr-2"></i>ENG</a>
+                            <li><a href="#"><i class="flag-us flag mr-2"></i>Tiếng Việt</a>
                             </li>
-                            <li><a href="#"><i class="flag-fr flag mr-2"></i>FRA</a></li>
+                            <li><a href="#"><i class="flag-fr flag mr-2"></i>Tiếng Anh</a></li>
                         </ul>
                     </div>
                     <!-- End .header-menu -->
@@ -32,11 +33,11 @@
                 <!-- End .header-dropown -->
 
                 <div class="header-dropdown ml-3 pl-1">
-                    <a href="#">USD</a>
+                    <a href="#">VND</a>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="#">EUR</a></li>
-                            <li><a href="#">USD</a></li>
+                            <li><a href="#">VN</a></li>
+                            <li><a href="#">VND</a></li>
                         </ul>
                     </div>
                     <!-- End .header-menu -->
@@ -46,39 +47,37 @@
             <!-- End .header-left -->
 
             <div class="header-right header-dropdowns ml-0 ml-sm-auto">
-                <p class="top-message mb-0 d-none d-sm-block">Welcome To Porto!</p>
+                <p class="top-message mb-0 d-none d-sm-block">Chào mừng đến với Porto!</p>
                 <div class="header-dropdown dropdown-expanded mr-3">
-                    <a href="#">Links</a>
+                    <a href="#">Liên kết</a>
                     <div class="header-menu">
                         <ul>
-                            <li><a href="dashboard.html">My Account</a></li>
-                            <li><a href="demo1-contact.html">Contact Us</a></li>
-                            <li><a href="wishlist.html">My Wishlist</a></li>
-                            <li><a href="#">Site Map</a></li>
-                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="dashboard.html">Tài khoản của tôi</a></li>
+                            <li><a href="demo1-contact.html">Liên hệ</a></li>
+                            <li><a href="wishlist.html">Danh sách mong muốn</a></li>
+                            <li><a href="#">Sơ đồ trang</a></li>
+                            <li><a href="cart.html">Giỏ hàng</a></li>
                             @if(session('user_name'))
                                 <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                             @else
                                 <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                             @endif
-
-
-                            
                         </ul>
                     </div>
-                    <!-- End .header-menu -->
+                    <!-- Kết thúc .header-menu -->
                 </div>
-                <!-- End .header-dropown -->
-
+                <!-- Kết thúc .header-dropown -->
+            
                 <span class="separator"></span>
-
+            
                 <div class="social-icons">
                     <a href="#" class="social-icon social-facebook icon-facebook ml-0" target="_blank"></a>
                     <a href="#" class="social-icon social-twitter icon-twitter ml-0" target="_blank"></a>
                     <a href="#" class="social-icon social-instagram icon-instagram ml-0" target="_blank"></a>
                 </div>
-                <!-- End .social-icons -->
+                <!-- Kết thúc .social-icons -->
             </div>
+            
             <!-- End .header-right -->
         </div>
         <!-- End .container -->
@@ -105,25 +104,26 @@
                             <input type="search" class="form-control" name="q" id="q" placeholder="Search..." required>
                             <div class="select-custom">
                                 <select id="cat" name="cat">
-                                    <option value="">All Categories</option>
-                                    <option value="4">Fashion</option>
-                                    <option value="12">- Women</option>
-                                    <option value="13">- Men</option>
-                                    <option value="66">- Jewellery</option>
-                                    <option value="67">- Kids Fashion</option>
-                                    <option value="5">Electronics</option>
+                                    <option value="">Tất cả danh mục</option>
+                                    <option value="4">Thời trang</option>
+                                    <option value="12">- Nữ</option>
+                                    <option value="13">- Nam</option>
+                                    <option value="66">- Trang sức</option>
+                                    <option value="67">- Thời trang trẻ em</option>
+                                    <option value="5">Điện tử</option>
                                     <option value="21">- Smart TVs</option>
-                                    <option value="22">- Cameras</option>
-                                    <option value="63">- Games</option>
-                                    <option value="7">Home &amp; Garden</option>
-                                    <option value="11">Motors</option>
-                                    <option value="31">- Cars and Trucks</option>
-                                    <option value="32">- Motorcycles &amp; Powersports</option>
-                                    <option value="33">- Parts &amp; Accessories</option>
-                                    <option value="34">- Boats</option>
-                                    <option value="57">- Auto Tools &amp; Supplies</option>
+                                    <option value="22">- Máy ảnh</option>
+                                    <option value="63">- Trò chơi điện tử</option>
+                                    <option value="7">Nhà &amp; Vườn</option>
+                                    <option value="11">Xe hơi</option>
+                                    <option value="31">- Ô tô và Xe tải</option>
+                                    <option value="32">- Xe máy &amp; Xe mô tô</option>
+                                    <option value="33">- Linh kiện &amp; Phụ tùng</option>
+                                    <option value="34">- Thuyền</option>
+                                    <option value="57">- Công cụ &amp; Vật tư ô tô</option>
                                 </select>
                             </div>
+                            
                             <!-- End .select-custom -->
                             <button class="btn icon-magnifier" type="submit"></button>
                         </div>
@@ -134,7 +134,7 @@
 
                 <div class="header-contact d-none d-lg-flex align-items-center pr-xl-5 mr-5 mr-xl-3 ml-5">
                     <i class="icon-phone-2"></i>
-                    <h6 class="pt-1 line-height-1">Call us now<a href="tel:#" class="d-block text-dark ls-10 pt-1">  091 6643161</a></h6>
+                    <h6 class="pt-1 line-height-1">Gọi chúng tôi<a href="tel:#" class="d-block text-dark ls-10 pt-1">  091 6643161</a></h6>
                 </div>
                 <!-- End .header-contact -->
                 @if(session('user_name'))

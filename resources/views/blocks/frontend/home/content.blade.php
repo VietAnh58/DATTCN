@@ -8,35 +8,36 @@
         <div class="info-boxes-container row row-joined mb-2 font2">
             <div class="info-box info-box-icon-left col-lg-4">
                 <i class="icon-shipping"></i>
-
+            
                 <div class="info-box-content">
-                    <h4>FREE SHIPPING &amp; RETURN</h4>
-                    <p class="text-body">Free shipping on all orders over $99</p>
+                    <h4>Miễn phí vận chuyển &amp; Đổi trả</h4>
+                    <p class="text-body">Miễn phí vận chuyển cho tất cả đơn hàng trên $99</p>
                 </div>
                 <!-- End .info-box-content -->
             </div>
             <!-- End .info-box -->
-
+            
             <div class="info-box info-box-icon-left col-lg-4">
                 <i class="icon-money"></i>
-
+            
                 <div class="info-box-content">
-                    <h4>MONEY BACK GUARANTEE</h4>
-                    <p class="text-body">100% money back guarantee</p>
+                    <h4>Đảm bảo hoàn tiền</h4>
+                    <p class="text-body">Đảm bảo hoàn tiền 100%</p>
                 </div>
                 <!-- End .info-box-content -->
             </div>
             <!-- End .info-box -->
-
+            
             <div class="info-box info-box-icon-left col-lg-4">
                 <i class="icon-support"></i>
-
+            
                 <div class="info-box-content">
-                    <h4>ONLINE SUPPORT 24/7</h4>
+                    <h4>Hỗ trợ trực tuyến 24/7</h4>
                     <p class="text-body">Lorem ipsum dolor sit amet.</p>
                 </div>
                 <!-- End .info-box-content -->
             </div>
+            
             <!-- End .info-box -->
         </div>
 
@@ -47,19 +48,20 @@
                     'dots': true,
                     'nav': false
                 }">
-                    <div class="home-slide home-slide1 banner banner-md-vw banner-sm-vw d-flex align-items-center">
-                        <img class="slide-bg" style="background-color: #2699D0;" src="{{ asset('frontend/')}}/assets/images/demoes/demo1/slider/slide-1.png" width="880" height="428" alt="home-slider">
-                        <div class="banner-layer appear-animate" data-animation-name="fadeInUpShorter">
-                            <h4 class="text-white mb-0">Find the Boundaries. Push Through!</h4>
-                            <h2 class="text-white mb-0">Summer Sale</h2>
-                            <h3 class="text-white text-uppercase m-b-3">70% Off</h3>
-                            <h5 class="text-white text-uppercase d-inline-block mb-0 ls-n-20 align-text-bottom">
-                                Starting At <b class="coupon-sale-text bg-secondary text-white d-inline-block">$<em
-                                        class="align-text-top">199</em>99</b></h5>
-                            <a href="demo1-shop.html" class="btn btn-dark btn-md ls-10">Shop Now!</a>
-                        </div>
-                        <!-- End .banner-layer -->
+                <div class="home-slide home-slide1 banner banner-md-vw banner-sm-vw d-flex align-items-center">
+                    <img class="slide-bg" style="background-color: #2699D0;" src="{{ asset('frontend/')}}/assets/images/demoes/demo1/slider/slide-1.png" width="880" height="428" alt="home-slider">
+                    <div class="banner-layer appear-animate" data-animation-name="fadeInUpShorter">
+                        <h4 class="text-white mb-0">Tìm Ra Giới Hạn. Tiến Lên!</h4>
+                        <h2 class="text-white mb-0">Giảm Giá Mùa Hè</h2>
+                        <h3 class="text-white text-uppercase m-b-3">70% Giảm Giá</h3>
+                        <h5 class="text-white text-uppercase d-inline-block mb-0 ls-n-20 align-text-bottom">
+                            Bắt Đầu Từ <b class="coupon-sale-text bg-secondary text-white d-inline-block">$<em
+                                    class="align-text-top">199</em>99</b></h5>
+                        <a href="demo1-shop.html" class="btn btn-dark btn-md ls-10">Mua Ngay!</a>
                     </div>
+                    <!-- End .banner-layer -->
+                </div>
+                
                     <!-- End .home-slide -->
 
                     <div class="home-slide home-slide2 banner banner-md-vw banner-sm-vw d-flex align-items-center">
@@ -385,11 +387,9 @@
                         <div class="col-md-4 appear-animate" data-animation-name="fadeInRightShorter" data-animation-delay="200">
                             <div class="feature-box  feature-box-simple text-center">
                                 <i class="icon-earphones-alt"></i>
-
                                 <div class="feature-box-content p-0">
-                                    <h3 class="mb-0 pb-1">Customer Support</h3>
-                                    <h5 class="mb-1 pb-1">Need Assistance?</h5>
-
+                                    <h3 class="mb-0 pb-1">Hỗ Trợ Khách Hàng</h3>
+                                    <h5 class="mb-1 pb-1">Cần Giúp Đỡ?</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</p>
                                 </div>
                                 <!-- End .feature-box-content -->
@@ -397,15 +397,13 @@
                             <!-- End .feature-box -->
                         </div>
                         <!-- End .col-md-4 -->
-
+                        
                         <div class="col-md-4 appear-animate" data-animation-name="fadeInRightShorter" data-animation-delay="400">
                             <div class="feature-box feature-box-simple text-center">
                                 <i class="icon-credit-card"></i>
-
                                 <div class="feature-box-content p-0">
-                                    <h3 class="mb-0 pb-1">Secured Payment</h3>
-                                    <h5 class="mb-1 pb-1">Safe & Fast</h5>
-
+                                    <h3 class="mb-0 pb-1">Thanh Toán An Toàn</h3>
+                                    <h5 class="mb-1 pb-1">An Toàn & Nhanh Chóng</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</p>
                                 </div>
                                 <!-- End .feature-box-content -->
@@ -413,21 +411,20 @@
                             <!-- End .feature-box -->
                         </div>
                         <!-- End .col-md-4 -->
-
+                        
                         <div class="col-md-4 appear-animate" data-animation-name="fadeInRightShorter" data-animation-delay="600">
                             <div class="feature-box feature-box-simple text-center">
                                 <i class="icon-action-undo"></i>
-
                                 <div class="feature-box-content p-0">
-                                    <h3 class="mb-0 pb-1">Returns</h3>
-                                    <h5 class="mb-1 pb-1">Easy & Free</h5>
-
+                                    <h3 class="mb-0 pb-1">Trả Hàng</h3>
+                                    <h5 class="mb-1 pb-1">Dễ Dàng & Miễn Phí</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapib.</p>
                                 </div>
                                 <!-- End .feature-box-content -->
                             </div>
                             <!-- End .feature-box -->
                         </div>
+                        
                         <!-- End .col-md-4 -->
                     </div>
                     <!-- End .row -->
