@@ -15,11 +15,15 @@ class ParentCategory extends Model
         'alias',
         'desc',
     ];
-    
-    public function menu()
-        {
-            return $this->belongsTo(Menu::class, 'id');
-        }
-    
 
+
+
+    function menu() 
+    {
+        return $this->belongsTo(Menu::class);
+    }
 }
+
+
+
+

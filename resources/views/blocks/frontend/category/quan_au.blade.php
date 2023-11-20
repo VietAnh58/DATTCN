@@ -6,8 +6,9 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}"><i class="icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#">Men</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Accessories</li>
+                    <li class="breadcrumb-item"><a href="#">{{ $one_item->category->parentCategory->menu->name }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $one_item->category->parentCategory->title }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $one_item->category->title }}</li>
                 </ol>
             </nav>
 
@@ -211,26 +212,71 @@
                         <div class="widget">
                             <h3 class="widget-title">
                                 <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true"
-                                    aria-controls="widget-body-2">Categories</a>
+                                    aria-controls="widget-body-2">Danh mục</a>
                             </h3>
 
                             <div class="collapse show" id="widget-body-2">
                                 <div class="widget-body">
                                     <ul class="cat-list">
-                                        <li>
-                                            <a href="#widget-category-1" data-toggle="collapse" role="button"
-                                                aria-expanded="true" aria-controls="widget-category-1">
-                                                Accessories<span class="products-count">(3)</span>
-                                                <span class="toggle"></span>
-                                            </a>
-                                            <div class="collapse show" id="widget-category-1">
-                                                <ul class="cat-sublist">
-                                                    <li>Caps<span class="products-count">(1)</span></li>
-                                                    <li>Watches<span class="products-count">(2)</span></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
+                                        @foreach ($menus as $parentItem)
+                                            @if ($parentItem->alias == 'nam' && $parentItem->is_active ==1)
+                                                <li>
+                                                    <a href="#widget-category-1" data-toggle="collapse" role="button"
+                                                        aria-expanded="true" aria-controls="widget-category-1">
+                                                        {{ $parentItem->name }}<span class="products-count">(3)</span>
+                                                        <span class="toggle"></span>
+                                                    </a>
+                                                    <div class="collapse show" id="widget-category-1">
+                                                        <ul class="cat-sublist">
+                                                            @foreach ($parentCategory as $childItem)
+                                                            @if ($childItem->menu_id == $parentItem->id)
+                                                                <li>{{ $childItem->title }}<span class="products-count">(3)</span></li>
+                                                            @endif
+                                                        @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            @elseif ($parentItem->alias == 'nu' && $parentItem->is_active ==1)
+                                                <li>
+                                                    <a href="#widget-category-2" class="collapsed" data-toggle="collapse"
+                                                role="button" aria-expanded="false" aria-controls="widget-category-2">
+                                                        {{ $parentItem->name }}<span class="products-count">(3)</span>
+                                                        <span class="toggle"></span>
+                                                    </a>
+                                                    <div class="collapse show" id="widget-category-2">
+                                                        <ul class="cat-sublist">
+                                                            @foreach ($parentCategory as $childItem)
+                                                                @if ($childItem->menu_id == $parentItem->id)
+                                                                    <li>{{ $childItem->title }}<span class="products-count">(3)</span></li>
+                                                                @endif
+                                                            @endforeach
+                                                            {{-- <li>Caps<span class="products-count">(1)</span></li>
+                                                            <li>Watches<span class="products-count">(2)</span></li> --}}
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            @elseif ($parentItem->alias == 'tre-em' && $parentItem->is_active ==1)
+                                            <li>
+                                                <a href="#widget-category-3" class="collapsed" data-toggle="collapse"
+                                                role="button" aria-expanded="false" aria-controls="widget-category-3">
+                                                    {{ $parentItem->name }}<span class="products-count">(3)</span>
+                                                    <span class="toggle"></span>
+                                                </a>
+                                                <div class="collapse show" id="widget-category-3">
+                                                    <ul class="cat-sublist">
+                                                        @foreach ($parentCategory as $childItem)
+                                                                @if ($childItem->menu_id == $parentItem->id)
+                                                                    <li>{{ $childItem->title }}<span class="products-count">(3)</span></li>
+                                                                @endif
+                                                            @endforeach
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            @endif
+                                            
+                                        @endforeach
+                                        
+                                        {{-- <li>
                                             <a href="#widget-category-2" class="collapsed" data-toggle="collapse"
                                                 role="button" aria-expanded="false" aria-controls="widget-category-2">
                                                 Dress<span class="products-count">(4)</span>
@@ -268,7 +314,7 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="#">Music</a><span class="products-count">(2)</span></li>
+                                        <li><a href="#">Music</a><span class="products-count">(2)</span></li> --}}
                                     </ul>
                                 </div>
                                 <!-- End .widget-body -->
@@ -279,24 +325,22 @@
 
                         <div class="widget">
                             <h3 class="widget-title">
-                                <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true"
-                                    aria-controls="widget-body-3">Price</a>
+                                <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true" aria-controls="widget-body-3">Price</a>
                             </h3>
 
                             <div class="collapse show" id="widget-body-3">
                                 <div class="widget-body pb-0">
                                     <form action="#">
                                         <div class="price-slider-wrapper">
-                                            <div id="price-slider"></div>
+                                            <div id="price-slider" class="noUi-target noUi-ltr noUi-horizontal"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(1, 1);"></div></div><div class="noUi-origin" style="transform: translate(-100%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="90.0" aria-valuenow="0.0" aria-valuetext="0.00"></div></div><div class="noUi-origin" style="transform: translate(0%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="10.0" aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="1000.00"></div></div></div></div>
                                             <!-- End #price-slider -->
                                         </div>
                                         <!-- End .price-slider-wrapper -->
 
-                                        <div
-                                            class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                                        <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
                                             <div class="filter-price-text">
                                                 Price:
-                                                <span id="filter-price-range"></span>
+                                                <span id="filter-price-range">$0 - $1000</span>
                                             </div>
                                             <!-- End .filter-price-text -->
 

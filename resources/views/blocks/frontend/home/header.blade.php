@@ -90,7 +90,7 @@
                 <button class="mobile-menu-toggler mr-2" type="button">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a href="demo1.html" class="logo">
+                <a href="{{route('index')}}" class="logo">
                     <img src="{{ asset('frontend/')}}/assets/images/logo.png" width="111" height="44" alt="Porto Logo">
                 </a>
             </div>
@@ -134,7 +134,7 @@
 
                 <div class="header-contact d-none d-lg-flex align-items-center pr-xl-5 mr-5 mr-xl-3 ml-5">
                     <i class="icon-phone-2"></i>
-                    <h6 class="pt-1 line-height-1">Gọi chúng tôi<a href="tel:#" class="d-block text-dark ls-10 pt-1">  091 6643161</a></h6>
+                    <h6 class="pt-1 line-height-1">Đặt hàng gọi<a href="tel:#" class="d-block text-dark ls-10 pt-1">  091 6643161</a></h6>
                 </div>
                 <!-- End .header-contact -->
                 @if(session('user_name'))
@@ -153,6 +153,7 @@
                     <a href="{{ route('login') }}" class="header-icon header-icon-user"><i class="icon-user-2"></i>Login</a>  
                 @endif --}}
                     
+                <a href="login.html" class="header-icon "><i class="icon-user-2"></i></a>
 
                 <a href="wishlist.html" class="header-icon"><i class="icon-wishlist-2"></i></a>
 

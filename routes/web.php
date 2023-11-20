@@ -66,7 +66,7 @@ Route::prefix('category')->name('category.')->group(function () {
     Route::prefix('quan-nam')->name('quan-nam.')->group(function () {  
         // Route::get('', [HomeController::class, 'category'])->name('index');
         Route::get('/quan-au-nam', [HomeController::class, 'quan_au_nam'])->name('quan-au-nam');
-        Route::get('/quan-short-nam', [HomeController::class, 'quan_short_nam'])->name('quan-short-nam');
+        Route::get('/quan-kaki-nam', [HomeController::class, 'quan_kaki_nam'])->name('quan-kaki-nam');
         Route::get('/quan-jeans-nam', [HomeController::class, 'quan_jeans_nam'])->name('quan-jeans-nam');
     });
 });

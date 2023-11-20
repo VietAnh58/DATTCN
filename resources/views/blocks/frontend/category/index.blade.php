@@ -82,22 +82,23 @@
                                         <option value="24">24</option>
                                         <option value="36">36</option>
                                     </select>
-                                </div><div class="row">
-                                <!-- End .select-custom -->
-                            </div>
-                            <!-- End .toolbox-item -->
+                                </div>
+                                <div class="row">
+                                    <!-- End .select-custom -->
+                                </div>
+                                <!-- End .toolbox-item -->
 
-                            <div class="toolbox-item layout-modes">
-                                <a href="category.html" class="layout-btn btn-grid active" title="Grid">
-                                    <i class="icon-mode-grid"></i>
-                                </a>
-                                <a href="category-list.html" class="layout-btn btn-list" title="List">
-                                    <i class="icon-mode-list"></i>
-                                </a>
+                                <div class="toolbox-item layout-modes">
+                                    <a href="category.html" class="layout-btn btn-grid active" title="Grid">
+                                        <i class="icon-mode-grid"></i>
+                                    </a>
+                                    <a href="category-list.html" class="layout-btn btn-list" title="List">
+                                        <i class="icon-mode-list"></i>
+                                    </a>
+                                </div>
+                                <!-- End .layout-modes -->
                             </div>
-                            <!-- End .layout-modes -->
-                        </div>
-                        <!-- End .toolbox-right -->
+                            <!-- End .toolbox-right -->
                     </nav>
 
                     <div class="row">
@@ -143,8 +144,9 @@
 
                                         <div class="price-box">
                                             @if ($item->sale_price > 0)
-                                                <span class="old-price">{{ number_format($item->price)  }}VND</span>
-                                                <span class="product-price">{{ number_format($item->sale_price) }}VND</span>
+                                                <span class="old-price">{{ number_format($item->price) }}VND</span>
+                                                <span
+                                                    class="product-price">{{ number_format($item->sale_price) }}VND</span>
                                             @else
                                                 <span class="product-price">{{ number_format($item->price) }}VND</span>
                                             @endif
@@ -187,20 +189,41 @@
                         </div>
                         <!-- End .toolbox-item -->
 
+                        <!-- Phân trang -->
                         <ul class="pagination toolbox-item">
-                            <li class="page-item disabled">
-                                <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><span class="page-link">...</span></li>
-                            <li class="page-item">
-                                <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
-                            </li>
+                            <!-- Nút trang trước -->
+                            @if ($products->currentPage() == 1)
+                                <li class="page-item disabled">
+                                    <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link page-link-btn" href="{{ $products->previousPageUrl() }}"><i
+                                            class="icon-angle-left"></i></a>
+                                </li>
+                            @endif
+
+                            <!-- Các trang được liệt kê -->
+                            @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                <li class="page-item {{ $i == $products->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+
+                            <!-- Nút trang tiếp theo -->
+                            @if ($products->currentPage() == $products->lastPage())
+                                <li class="page-item disabled">
+                                    <a class="page-link page-link-btn" href="#"><i
+                                            class="icon-angle-right"></i></a>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link page-link-btn" href="{{ $products->nextPageUrl() }}"><i
+                                            class="icon-angle-right"></i></a>
+                                </li>
+                            @endif
                         </ul>
+
                     </nav>
                 </div>
                 <!-- End .col-lg-9 -->
@@ -211,26 +234,71 @@
                         <div class="widget">
                             <h3 class="widget-title">
                                 <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true"
-                                    aria-controls="widget-body-2">Categories</a>
+                                    aria-controls="widget-body-2">Danh mục</a>
                             </h3>
 
                             <div class="collapse show" id="widget-body-2">
                                 <div class="widget-body">
                                     <ul class="cat-list">
-                                        <li>
-                                            <a href="#widget-category-1" data-toggle="collapse" role="button"
-                                                aria-expanded="true" aria-controls="widget-category-1">
-                                                Accessories<span class="products-count">(3)</span>
-                                                <span class="toggle"></span>
-                                            </a>
-                                            <div class="collapse show" id="widget-category-1">
-                                                <ul class="cat-sublist">
-                                                    <li>Caps<span class="products-count">(1)</span></li>
-                                                    <li>Watches<span class="products-count">(2)</span></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
+                                        @foreach ($menus as $parentItem)
+                                            @if ($parentItem->alias == 'nam' && $parentItem->is_active ==1)
+                                                <li>
+                                                    <a href="#widget-category-1" data-toggle="collapse" role="button"
+                                                        aria-expanded="true" aria-controls="widget-category-1">
+                                                        {{ $parentItem->name }}<span class="products-count">(3)</span>
+                                                        <span class="toggle"></span>
+                                                    </a>
+                                                    <div class="collapse show" id="widget-category-1">
+                                                        <ul class="cat-sublist">
+                                                            @foreach ($parentCategory as $childItem)
+                                                            @if ($childItem->menu_id == $parentItem->id)
+                                                                <li>{{ $childItem->title }}<span class="products-count">(3)</span></li>
+                                                            @endif
+                                                        @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            @elseif ($parentItem->alias == 'nu' && $parentItem->is_active ==1)
+                                                <li>
+                                                    <a href="#widget-category-2" class="collapsed" data-toggle="collapse"
+                                                role="button" aria-expanded="false" aria-controls="widget-category-2">
+                                                        {{ $parentItem->name }}<span class="products-count">(3)</span>
+                                                        <span class="toggle"></span>
+                                                    </a>
+                                                    <div class="collapse show" id="widget-category-2">
+                                                        <ul class="cat-sublist">
+                                                            @foreach ($parentCategory as $childItem)
+                                                                @if ($childItem->menu_id == $parentItem->id)
+                                                                    <li>{{ $childItem->title }}<span class="products-count">(3)</span></li>
+                                                                @endif
+                                                            @endforeach
+                                                            {{-- <li>Caps<span class="products-count">(1)</span></li>
+                                                            <li>Watches<span class="products-count">(2)</span></li> --}}
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            @elseif ($parentItem->alias == 'tre-em' && $parentItem->is_active ==1)
+                                            <li>
+                                                <a href="#widget-category-3" class="collapsed" data-toggle="collapse"
+                                                role="button" aria-expanded="false" aria-controls="widget-category-3">
+                                                    {{ $parentItem->name }}<span class="products-count">(3)</span>
+                                                    <span class="toggle"></span>
+                                                </a>
+                                                <div class="collapse show" id="widget-category-3">
+                                                    <ul class="cat-sublist">
+                                                        @foreach ($parentCategory as $childItem)
+                                                                @if ($childItem->menu_id == $parentItem->id)
+                                                                    <li>{{ $childItem->title }}<span class="products-count">(3)</span></li>
+                                                                @endif
+                                                            @endforeach
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            @endif
+                                            
+                                        @endforeach
+                                        
+                                        {{-- <li>
                                             <a href="#widget-category-2" class="collapsed" data-toggle="collapse"
                                                 role="button" aria-expanded="false" aria-controls="widget-category-2">
                                                 Dress<span class="products-count">(4)</span>
@@ -268,7 +336,7 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="#">Music</a><span class="products-count">(2)</span></li>
+                                        <li><a href="#">Music</a><span class="products-count">(2)</span></li> --}}
                                     </ul>
                                 </div>
                                 <!-- End .widget-body -->
@@ -279,24 +347,22 @@
 
                         <div class="widget">
                             <h3 class="widget-title">
-                                <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true"
-                                    aria-controls="widget-body-3">Price</a>
+                                <a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true" aria-controls="widget-body-3">Price</a>
                             </h3>
 
                             <div class="collapse show" id="widget-body-3">
                                 <div class="widget-body pb-0">
                                     <form action="#">
                                         <div class="price-slider-wrapper">
-                                            <div id="price-slider"></div>
+                                            <div id="price-slider" class="noUi-target noUi-ltr noUi-horizontal"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(0%, 0px) scale(1, 1);"></div></div><div class="noUi-origin" style="transform: translate(-100%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="0.0" aria-valuemax="90.0" aria-valuenow="0.0" aria-valuetext="0.00"></div></div><div class="noUi-origin" style="transform: translate(0%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="10.0" aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="1000.00"></div></div></div></div>
                                             <!-- End #price-slider -->
                                         </div>
                                         <!-- End .price-slider-wrapper -->
 
-                                        <div
-                                            class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
+                                        <div class="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
                                             <div class="filter-price-text">
                                                 Price:
-                                                <span id="filter-price-range"></span>
+                                                <span id="filter-price-range">$0 - $1000</span>
                                             </div>
                                             <!-- End .filter-price-text -->
 

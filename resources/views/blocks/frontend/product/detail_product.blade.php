@@ -5,7 +5,7 @@
         <div class="container">
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="demo1.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{route('index')}}"><i class="icon-home"></i></a></li>
                     <li class="breadcrumb-item"><a href="#">Products</a></li>
                 </ol>
             </nav>
@@ -23,10 +23,11 @@
                                     @if ($product->is_best_seller)
                                         <div class="product-label label-hot">HOT</div>
                                     @endif
-                                        @if ($product->sale_price > 0)
-                                        
-                                        <div class="product-label label-sale">{{ round((($product->price - $product->sale_price) * 100) / $product->price) }}%</div>
-                                        @endif
+                                    @if ($product->sale_price > 0)
+                                        <div class="product-label label-sale">
+                                            {{ round((($product->price - $product->sale_price) * 100) / $product->price) }}%
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -190,8 +191,6 @@
                         </div>
 
                         <div class="product-action">
-                            {{-- <form method="post" action="#"> --}}
-                            {{-- @csrf --}}
                             <input type="hidden" id="id" name="productId" value="{{ $product->id }}" />
                             <input type="hidden" name="product_name" value="{{ $product->product_name }}" />
                             <input type="hidden" name="alias" value="{{ $product->alias }}" />
@@ -208,6 +207,7 @@
                                 <input class="horizontal-quantity form-control" id="quantityInput" name="quantity"
                                     type="text" value="1">
                             </div>
+
                             <a href="javascript:" onclick="AddCartWithQuantity({{ $product->id }})"
                                 class="btn btn-dark  mr-2">Thêm vào giỏ hàng</a>
 
@@ -235,8 +235,8 @@
                             </div>
                             <!-- End .social-icons -->
 
-                            <a href="wishlist.html" class="btn-icon-wish add-wishlist" title="Add to Wishlist"><i
-                                    class="icon-wishlist-2"></i><span>Add to
+                            <a href="wishlist.html" class="btn-icon-wish add-wishlist"
+                                title="Thêm vào danh sách mong muốn"><i class="icon-wishlist-2"></i><span>Add to
                                     Wishlist</span></a>
                         </div>
                         <!-- End .product single-share -->
@@ -505,19 +505,16 @@
                                         <img src="{{ asset('storage/images') }}/{{ $randomImage->image }}"
                                             width="84" height="84" alt="{{ $item->product_name }}">
                                     @endif
-                                    {{-- @foreach ($productImages as $item)
-                                <img src="{{ asset('storage/images')}}/{{ $item->image }}" width="205" height="205" alt="{{ $item->product_name }}">   
-                            @endforeach --}}
+
                                 </a>
                                 <div class="label-group">
-                                    @if ($product->is_best_seller)
+                                    @if ($item->is_best_seller)
                                         <div class="product-label label-hot">HOT</div>
                                     @endif
-
-                                    
-                                        @if ($product->sale_price > 0)
-                                        <div class="product-label label-sale">{{ round((($item->price - $item->sale_price) * 100) / $item->price) }}%</div>
-                                        @endif
+                                    @if ($item->sale_price > 0)
+                                        <div class="product-label label-sale">-{{ round((($item->price - $item->sale_price) * 100) / $item->price) }}%</div>
+                                        
+                                    @endif
                                 </div>
                                 <div class="btn-icon-group">
                                     <a href="#" class="btn-icon btn-add-cart product-type-simple"><i
@@ -715,7 +712,7 @@
                 </div>
 
                 <div class="col-lg-3 col-sm-6 pb-5 pb-md-0">
-                    <h4 class="section-sub-title">SẢN PHẨM ĐƯỢC ĐÁNH GIÁ HÀNG ĐẦU</h4>
+                    <h4 class="section-sub-title">SẢN PHẨM ĐƯỢC ĐÁNH GIÁ CAO</h4>
                     @foreach ($new_products as $item)
                         <div class="product-default left-details product-widget ">
                             <figure>

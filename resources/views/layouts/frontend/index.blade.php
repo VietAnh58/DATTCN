@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from portotheme.com/html/porto_ecommerce/demo1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Oct 2023 03:17:00 GMT -->
+<!-- Mirrored from portotheme.com/html/porto_ecommerce/{{route('index')}} by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Oct 2023 03:17:00 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
             <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
             <nav class="mobile-nav">
                 <ul class="mobile-menu menu-with-icon">
-                    <li><a href="demo1.html"><i class="icon-home"></i>Trang chủ</a></li>
+                    <li><a href="{{route('index')}}"><i class="icon-home"></i>Trang chủ</a></li>
 <li>
     <a href="demo1-shop.html" class="sf-with-ul"><i class="sicon-badge"></i>Danh mục</a>
     <ul>
@@ -188,7 +188,7 @@
 
     <div class="sticky-navbar">
         <div class="sticky-info">
-            <a href="demo1.html">
+            <a href="{{route('index')}}">
                 <i class="icon-home"></i>Home
             </a>
         </div>
@@ -263,5 +263,5 @@
 <script>(function(){var js = "window['__CF$cv$params']={r:'81d84342de2ee6d6',t:'MTY5ODU0OTQxOC4yNDUwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='{{ asset('frontend/') }}/assets/cdn-cgi/challenge-platform/h/g/scripts/jsd/c359bc3d/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script></body>
 
 
-<!-- Mirrored from portotheme.com/html/porto_ecommerce/demo1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Oct 2023 03:18:05 GMT -->
+<!-- Mirrored from portotheme.com/html/porto_ecommerce/{{route('index')}} by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Oct 2023 03:18:05 GMT -->
 </html>

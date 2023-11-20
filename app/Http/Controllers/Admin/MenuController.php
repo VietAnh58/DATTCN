@@ -76,7 +76,7 @@ class MenuController extends Controller
     public function update(Request $request, Menu $menu)
     {
         $menu->name = $request->name;
-        // $menu->alias = Str::slug($request->title);
+        $menu->alias = Str::slug($request->name);
         $menu->link = $request->link;
         $menu->order_number = $request->order_number;
         $menu->is_active = $request->is_active ? 1 : 0;

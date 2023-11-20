@@ -184,7 +184,7 @@
                             <div class="category-list">
                                 <a href="{{ route('detail_product', $item->alias) }}" class="product-category">{{ $item->category->title }}</a>
                             </div>
-                            <a href="wishlist.html" title="Add to Wishlist" class="btn-icon-wish"><i class="icon-heart"></i></a>
+                            <a href="wishlist.html" title="Thêm vào danh sách mong muốn" class="btn-icon-wish"><i class="icon-heart"></i></a>
                         </div>
                         <h3 class="product-title"> <a href="{{ route('detail_product', $item->alias) }}">{{ $item->product_name }}</a> </h3>
                         <div class="ratings-container">

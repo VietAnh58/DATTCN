@@ -154,8 +154,8 @@
 
                         <div class="header-contact d-none d-lg-flex align-items-center pr-xl-5 mr-5 mr-xl-3 ml-5">
                             <i class="icon-phone-2"></i>
-                            <h6 class="pt-1 line-height-1">Gọi ngay<a href="tel:#"
-                                    class="d-block text-dark ls-10 pt-1">+123 5678 890</a></h6>
+                            <h6 class="pt-1 line-height-1">Đặt hàng gọi<a href="tel:#"
+                                    class="d-block text-dark ls-10 pt-1">091 6643161</a></h6>
                         </div>
                         <!-- End .header-contact -->
 
@@ -164,87 +164,93 @@
                         <a href="wishlist.html" class="header-icon"><i class="icon-wishlist-2"></i></a>
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                data-display="static">
                                 <i class="minicart-icon"></i>
-                                
-        
-                                        @if (Session::has('Cart') && optional(Session::get('Cart'))->totalQuantity !== null)
-                                            <span id="total-quantity-show"
-                                                class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity }}</span>
-                                        @else
-                                            <span id="total-quantity-show" class="cart-count badge-circle">0</span>
-                                        @endif
+
+
+                                @if (Session::has('Cart') && optional(Session::get('Cart'))->totalQuantity !== null)
+                                    <span id="total-quantity-show"
+                                        class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity }}</span>
+                                @else
+                                    <span id="total-quantity-show" class="cart-count badge-circle">0</span>
+                                @endif
                             </a>
-        
+
                             <div class="cart-overlay"></div>
-        
+
                             <div class="dropdown-menu mobile-cart">
                                 <a href="#" title="Close (Esc)" class="btn-close">×</a>
-        
+
                                 <div class="dropdownmenu-wrapper custom-scrollbar">
                                     <div class="dropdown-cart-header">Giỏ hàng</div>
                                     <!-- End .dropdown-cart-header -->
-        
+
                                     <div id="change-item-cart">
                                         @if (session()->has('Cart') && session()->get('Cart')->totalQuantity > 0)
-                                        <div class="dropdown-cart-products">
-                                            @foreach (session()->get('Cart')->products as $item)
-                                                <div class="product">
-                                                    <div class="product-details">
-                                                        <h4 class="product-title">
-                                                            <a
-                                                                href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
-                                                        </h4>
-                                                        <span class="cart-product-info">
-                                                            @if ($item['productInfo']->sale_price > 0)
-                                                                <span
-                                                                    class="cart-product-qty">{{ number_format($item['productInfo']->sale_price) }}VND</span>
-                                                                ×
-                                                                {{ $item['quantity'] }}
-                                                            @else
-                                                                <span
-                                                                    class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span>
-                                                                ×
-                                                                {{ $item['quantity'] }}
-                                                            @endif
-                                    
-                                                        </span>
+                                            <div class="dropdown-cart-products">
+                                                @foreach (session()->get('Cart')->products as $item)
+                                                    <div class="product">
+                                                        <div class="product-details">
+                                                            <h4 class="product-title">
+                                                                <a
+                                                                    href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
+                                                            </h4>
+                                                            <span class="cart-product-info">
+                                                                @if ($item['productInfo']->sale_price > 0)
+                                                                    <span
+                                                                        class="cart-product-qty">{{ number_format($item['productInfo']->sale_price) }}VND</span>
+                                                                    ×
+                                                                    {{ $item['quantity'] }}
+                                                                @else
+                                                                    <span
+                                                                        class="cart-product-qty">{{ number_format($item['productInfo']->price) }}VND</span>
+                                                                    ×
+                                                                    {{ $item['quantity'] }}
+                                                                @endif
+
+                                                            </span>
+                                                        </div>
+                                                        <!-- End .product-details -->
+
+                                                        <figure class="product-image-container">
+                                                            <a href="product.html" class="product-image">
+                                                                <img src="{{ asset('storage/images') }}/{{ $item['productInfo']->image }}"
+                                                                    alt="product" width="80" height="80">
+                                                            </a>
+                                                            <a href="#"
+                                                                data-id="{{ $item['productInfo']->id }}"
+                                                                class="btn-remove"
+                                                                title="Remove Product"><span>×</span></a>
+                                                        </figure>
                                                     </div>
-                                                    <!-- End .product-details -->
-                                    
-                                                    <figure class="product-image-container">
-                                                        <a href="product.html" class="product-image">
-                                                            <img src="{{ asset('storage/images') }}/{{ $item['productInfo']->image }}" alt="product"
-                                                                width="80" height="80">
-                                                        </a>
-                                                        <a href="#" data-id="{{ $item['productInfo']->id }}" class="btn-remove"
-                                                            title="Remove Product"><span>×</span></a>
-                                                    </figure>
-                                                </div>
-                                            @endforeach
-                                            <!-- End .product -->
-                                        </div>
-                                        <!-- End .cart-product -->
-                                    
-                                        <div class="dropdown-cart-total">
-                                            <span>Tổng tiền:</span>
-                                            <input type="hidden" id="total-quantity" value="{{ session()->get('Cart')->totalQuantity }}">
-                                            <span
-                                                class="cart-total-price float-right">{{ number_format(session()->get('Cart')->calculateTotalPrice()) }}VND</span>
-                                        </div>
-                                    @else
-                                        <input type="hiden" id="total-quantity" value="0">
-                                        <h1>Không có sản phẩm</h1>
-                                    @endif
-                                    
+                                                @endforeach
+                                                <!-- End .product -->
+                                            </div>
+                                            <!-- End .cart-product -->
+
+                                            <div class="dropdown-cart-total">
+                                                <span>Tổng tiền:</span>
+                                                <input type="hidden" id="total-quantity"
+                                                    value="{{ session()->get('Cart')->totalQuantity }}">
+                                                <span
+                                                    class="cart-total-price float-right">{{ number_format(session()->get('Cart')->calculateTotalPrice()) }}VND</span>
+                                            </div>
+                                        @else
+                                            <input type="hiden" id="total-quantity" value="0">
+                                            <h1>Không có sản phẩm</h1>
+                                        @endif
+
                                     </div>
                                     <!-- End .cart-product -->
-        
-                                    
+
+
                                     <!-- End .dropdown-cart-total -->
-        
+
                                     <div class="dropdown-cart-action">
-                                        <a href="{{ route('cart.index') }}" class="btn btn-gray btn-block view-cart">Xem giỏ hàng</a>
+                                        <a href="{{ route('cart.index') }}"
+                                            class="btn btn-gray btn-block view-cart">Xem giỏ hàng</a>
                                         <a href="checkout.html" class="btn btn-dark btn-block">Kiểm tra hóa đơn</a>
                                     </div>
                                     <!-- End .dropdown-cart-total -->
@@ -273,7 +279,95 @@
                     <div class="header-center">
                         <nav class="main-nav w-100">
                             <ul class="menu">
-                                <li>
+                                @foreach ($menus as $item)
+                                    @if ($item->alias == 'trang-chu' && $item->is_active == 1)
+                                        <li class="active"><a
+                                                href="{{ route('index') }}"></i>{{ $item->name }}</a>
+                                        </li>
+                                    @elseif ($item->alias == 'nam' && $item->is_active == 1)
+                                        <li>
+                                            <a href="#" class="sf-with-ul"></i>{{ $item->name }}</a>
+                                            <div class="megamenu megamenu-fixed-width megamenu-3cols">
+                                                <div class="row">
+                                                    @foreach ($parentCategory as $parentItem)
+                                                        @if ($parentItem->menu_id == 2)
+                                                            <div class="col-lg-4">
+                                                                <a href="#"
+                                                                    class="nolink pl-0">{{ $parentItem->title }}</a>
+                                                                <ul class="submenu">
+                                                                    @foreach ($category as $childItem)
+                                                                        @if ($childItem->parent_id == $parentItem->id && $childItem->is_active == 1)
+                                                                            <li><a
+                                                                                    href="{{ route('category.' . $parentItem->alias . '.' . $childItem->alias) }}">{{ $childItem->title }}</a>
+                                                                                {{-- href="#">{{ $childItem->title }}</a> --}}
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <!-- End .megamenu -->
+                                        </li>
+                                    @elseif ($item->alias == 'nu' && $item->is_active == 1)
+                                        <li>
+                                            <a href="#" class="sf-with-ul"></i>{{ $item->name }}</a>
+                                            <div class="megamenu megamenu-fixed-width megamenu-3cols">
+                                                <div class="row">
+                                                    @foreach ($parentCategory as $parentItem)
+                                                        @if ($parentItem->menu_id == 3)
+                                                            <div class="col-lg-4">
+                                                                <a href="#"
+                                                                    class="nolink pl-0">{{ $parentItem->title }}</a>
+                                                                <ul class="submenu">
+                                                                    @foreach ($category as $childItem)
+                                                                        @if ($childItem->parent_id == $parentItem->id && $childItem->is_active == 1)
+                                                                            <li><a
+                                                                                    href="{{ route('category.' . $parentItem->alias . '.' . $childItem->alias) }}">{{ $childItem->title }}</a>
+                                                                                {{-- href="#">{{ $childItem->title }}</a> --}}
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <!-- End .megamenu -->
+                                        </li>
+                                    @elseif ($item->alias == 'tre-em' && $item->is_active == 1)
+                                        <li>
+                                            <a href="#" class="sf-with-ul"></i>{{ $item->name }}</a>
+
+                                            <ul>
+                                                <li><a href="wishlist.html">Danh sách mong muốn</a></li>
+                                                <li><a href="cart.html">Giỏ hàng</a></li>
+                                                <li><a href="checkout.html">Thanh toán</a></li>
+                                                <li><a href="dashboard.html">Bảng điều khiển</a></li>
+                                                <li><a href="demo1-about.html">Về chúng tôi</a></li>
+                                                <li><a href="#">Blog</a>
+                                                    <ul>
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li><a href="single.html">Bài đăng Blog</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="demo1-contact.html">Liên hệ</a></li>
+                                                <li><a href="login.html">Đăng nhập</a></li>
+                                                <li><a href="forgot-password.html">Quên mật khẩu</a></li>
+                                            </ul>
+                                        </li>
+                                    @elseif ($item->alias == 'tin-tuc' && $item->is_active == 1)
+                                        <li><a href="blog.html">{{ $item->name }}</a></li>
+                                    @elseif ($item->alias == 've-porto' && $item->is_active == 1)
+                                        <li><a href="demo1-about.html">{{ $item->name }}</a></li>
+                                    @elseif ($item->alias == 'uu-dai-dac-biet' && $item->is_active == 1)
+                                        <li><a href="#"></i>{{ $item->name }}</a></li>
+                                    @endif
+                                @endforeach
+                                {{-- <li>
                                     <a href="{{ route('index') }}">Trang chủ</a>
                                 </li>
                                 <li>
@@ -294,7 +388,7 @@
                                 <li><a href="demo1-contact.html">Liên hệ</a></li>
                                 <li class="float-right"><a href="https://1.envato.market/DdLk5" class="pl-5"
                                         target="_blank">Mua Porto!</a></li>
-                                <li class="float-right"><a href="#" class="pl-5">Ưu đãi đặc biệt!</a></li>
+                                <li class="float-right"><a href="#" class="pl-5">Ưu đãi đặc biệt!</a></li> --}}
                             </ul>
 
                         </nav>
@@ -442,7 +536,7 @@
                         <div class="col-lg-3 col-sm-6 pb-2 pb-sm-0">
                             <div class="widget">
                                 <h4 class="widget-title">Giới thiệu</h4>
-                                <a href="demo1.html">
+                                <a href="{{route('index')}}">
                                     <img src="{{ asset('frontend/') }}/assets/images/logo-footer.png" alt="Logo"
                                         class="logo-footer">
                                 </a>
@@ -684,35 +778,35 @@
     </div>
     <!-- End .mobile-menu-container -->
 
-   <div class="sticky-navbar">
-    <div class="sticky-info">
-        <a href="{{ route('index') }}">
-            <i class="icon-home"></i>Trang chủ
-        </a>
+    <div class="sticky-navbar">
+        <div class="sticky-info">
+            <a href="{{ route('index') }}">
+                <i class="icon-home"></i>Trang chủ
+            </a>
+        </div>
+        <div class="sticky-info">
+            <a href="demo1-shop.html" class="">
+                <i class="icon-bars"></i>Danh mục
+            </a>
+        </div>
+        <div class="sticky-info">
+            <a href="wishlist.html" class="">
+                <i class="icon-wishlist-2"></i>Danh sách mong muốn
+            </a>
+        </div>
+        <div class="sticky-info">
+            <a href="https://www.portotheme.com/html/porto_ecommerce/my-account.html" class="">
+                <i class="icon-user-2"></i>Tài khoản
+            </a>
+        </div>
+        <div class="sticky-info">
+            <a href="cart.html" class="">
+                <i class="icon-shopping-cart position-relative">
+                    <span class="cart-count badge-circle">3</span>
+                </i>Giỏ hàng
+            </a>
+        </div>
     </div>
-    <div class="sticky-info">
-        <a href="demo1-shop.html" class="">
-            <i class="icon-bars"></i>Danh mục
-        </a>
-    </div>
-    <div class="sticky-info">
-        <a href="wishlist.html" class="">
-            <i class="icon-wishlist-2"></i>Danh sách mong muốn
-        </a>
-    </div>
-    <div class="sticky-info">
-        <a href="https://www.portotheme.com/html/porto_ecommerce/my-account.html" class="">
-            <i class="icon-user-2"></i>Tài khoản
-        </a>
-    </div>
-    <div class="sticky-info">
-        <a href="cart.html" class="">
-            <i class="icon-shopping-cart position-relative">
-                <span class="cart-count badge-circle">3</span>
-            </i>Giỏ hàng
-        </a>
-    </div>
-</div>
 
 
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>

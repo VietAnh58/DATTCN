@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-sm-6 pb-2 pb-sm-0">
                     <div class="widget">
                         <h4 class="widget-title">Giới thiệu</h4>
-                        <a href="demo1.html">
+                        <a href="{{route('index')}}">
                             <img src="{{ asset('frontend/') }}/assets/images/logo-footer.png" alt="Logo"
                                 class="logo-footer">
                         </a>

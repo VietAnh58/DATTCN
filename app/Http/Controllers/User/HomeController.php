@@ -37,7 +37,9 @@ class HomeController extends Controller
 
         $category = Category::all();
 
-        return view('blocks.frontend.home.content', 
+         // Lấy 10 sản phẩm trên mỗi trang
+        
+        return view('blocks.frontend.home.content',
         compact('featured_products', 'featured_product_images','best_seller_products', 'new_products',
         'top_rate_product', 'menus','parentCategory','category'));
     }
@@ -70,83 +72,199 @@ class HomeController extends Controller
 
         //Lay san pham ban chay
         $best_seller_products = Product::where('is_best_seller', 1)->take(3)->get();
+        
+        $menus = Menu::all();
 
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
 
         $random_product = Product::inRandomOrder()->take(3)->get();
         return view('blocks.frontend.product.detail_product', compact('product', 'productImages', 'relatedProducts',
-        'new_products', 'best_seller_products', 'featured_products', 'random_product','second_product_images', 'detail_product_image'));
+        'new_products', 'best_seller_products', 'featured_products', 'random_product','second_product_images', 'detail_product_image',
+        'menus','parentCategory', 'category'));
     }
 
     public function category() {
-        $products = Product::all();
+        // $products = Product::all();
         // dd($products);
+        $products = Product::paginate(12);
         
         $second_product_images = [];
         foreach ($products as $item) {
             $images = ImageProduct::where('product_id', $item->id)->get();
             $second_product_images[$item->id] = $images;
         }
-        return view('blocks.frontend.category.index',compact('products', 'second_product_images'));
+
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+
+       
+        return view('blocks.frontend.category.index',compact('products', 'second_product_images','menus','parentCategory', 'category'));
     }
 
     public function ao_polo() {
         $ao_polo = Product::where('category_id', 1)->get();
-        return view('blocks.frontend.category.ao_polo', compact('ao_polo'));
+        $menus = Menu::all();
+
+        $one_item = $ao_polo->first();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_polo', compact('ao_polo','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function ao_ni() {
         $ao_ni = Product::where('category_id', 2)->get();
-        return view('blocks.frontend.category.ao_ni', compact('ao_ni'));
+        
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $one_item = $ao_ni->first();
+
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_ni', compact('ao_ni','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function ao_len() {
         $ao_len = Product::where('category_id', 3)->get();
-        return view('blocks.frontend.category.ao_len', compact('ao_len'));
+        $menus = Menu::all();
+
+        $one_item = $ao_len->first();
+
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_len', compact('ao_len','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function quan_au() {
         $quan_au = Product::where('category_id', 4)->get();
-        return view('blocks.frontend.category.quan_au', compact('quan_au'));
+
+        $menus = Menu::all();
+
+        $one_item = $quan_au->first();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.quan_au', compact('quan_au','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function quan_short() {
         $quan_short = Product::where('category_id', 5)->get();
-        return view('blocks.frontend.category.quan_short', compact('quan_short'));
+
+        $menus = Menu::all();
+
+        $one_item = $quan_short->first();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.quan_short', compact('quan_short','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function quan_kaki() {
         $quan_kaki = Product::where('category_id', 7)->get();
-        return view('blocks.frontend.category.ao_polo_nam', compact('quan_kaki'));
+
+        $menus = Menu::all();
+
+        $one_item = $quan_kaki->first();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_polo_nam', compact('quan_kaki','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function ao_khoac_nam() {
         $ao_khoac_nam = Product::where('category_id', 9)->get();
-        return view('blocks.frontend.category.ao_khoac_nam', compact('ao_khoac_nam'));
+
+        $one_item = $ao_khoac_nam->first();
+
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_khoac_nam', compact('ao_khoac_nam','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function ao_ni_nam() {
         $ao_ni_nam = Product::where('category_id', 10)->get();
-        return view('blocks.frontend.category.ao_ni_nam', compact('ao_ni_nam'));
+
+        $menus = Menu::all();
+
+        $one_item = $ao_ni_nam->first();
+
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_ni_nam', compact('ao_ni_nam','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function quan_au_nam() {
         $quan_au_nam = Product::where('category_id', 11)->get();
-        return view('blocks.frontend.category.quan_au_nam', compact('quan_au_nam'));
+
+        $menus = Menu::all();
+
+        $one_item = $quan_au_nam->first();
+
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.quan_au_nam', compact('quan_au_nam','menus','parentCategory', 'category', 'one_item'));
     }
 
-    public function quan_short_nam() {
-        $quan_short_nam = Product::where('category_id', 12)->get();
-        return view('blocks.frontend.category.quan_short_nam', compact('quan_short_nam'));
+    public function quan_kaki_nam() {
+        $quan_kaki_nam = Product::where('category_id', 12)->get();
+
+        $menus = Menu::all();
+
+        $one_item = $quan_kaki_nam->first();
+
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.quan_kaki_nam', compact('quan_kaki_nam','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function quan_jeans_nam() {
         $quan_jeans_nam = Product::where('category_id', 13)->get();
-        return view('blocks.frontend.category.quan_jeans_nam', compact('quan_jeans_nam'));
+
+        $one_item = $quan_jeans_nam->first();
+
+
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.quan_jeans_nam', compact('quan_jeans_nam','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function ao_polo_nam() {
         $ao_polo_nam = Product::where('category_id', 8)->get();
-        return view('blocks.frontend.category.ao_polo_nam', compact('ao_polo_nam'));
+
+        $one_item = $ao_polo_nam->first();
+
+
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.category.ao_polo_nam', compact('ao_polo_nam','menus','parentCategory', 'category', 'one_item'));
     }
               
 }

@@ -21,9 +21,9 @@ class Menu extends Model
         'is_active',
     ];
 
-    public function parentCategory()
+    public function parentCategories()
     {
-        return $this->hasOne(ParentCategory::class, 'id');
+        return $this->hasMany(ParentCategory::class, 'menu_id', 'id');
     }
 }
 
