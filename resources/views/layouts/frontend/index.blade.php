@@ -139,7 +139,7 @@
                                 <a href="dashboard.html">Bảng điều khiển</a>
                             </li>
                             <li>
-                                <a href="login.html">Đăng nhập</a>
+                                <a href="{{ route('login') }}">Đăng nhập</a>
                             </li>
                             <li>
                                 <a href="forgot-password.html">Quên mật khẩu</a>
@@ -157,12 +157,12 @@
                     </ul>
                     
                     <ul class="mobile-menu">
-                        <li><a href="login.html">Tài khoản của tôi</a></li>
+                        <li><a href="{{ route('login') }}">Tài khoản của tôi</a></li>
                         <li><a href="demo1-contact.html">Liên hệ</a></li>
                         <li><a href="wishlist.html">Danh sách mong muốn của tôi</a></li>
                         <li><a href="#">Bản đồ trang web</a></li>
                         <li><a href="cart.html">Giỏ hàng</a></li>
-                        <li><a href="login.html" class="login-link">Đăng nhập</a></li>
+                        <li><a href="{{ route('login') }}" class="login-link">Đăng nhập</a></li>
                     </ul>
                     
             </nav>
@@ -203,7 +203,7 @@
             </a>
         </div>
         <div class="sticky-info">
-            <a href="login.html" class="">
+            <a href="{{ route('login') }}" class="">
                 <i class="icon-user-2"></i>Account
             </a>
         </div>

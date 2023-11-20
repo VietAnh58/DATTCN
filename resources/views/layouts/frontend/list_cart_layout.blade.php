@@ -59,7 +59,7 @@
             <div class="header-top">
                 <div class="container">
                     <div class="header-left d-none d-sm-block">
-                        <p class="top-message text-uppercase">FREE Returns. Standard Shipping Orders $99+</p>
+                        <p class="top-message text-uppercase">Miễn phí đổi/trả. Giao hàng tiêu chuẩn cho đơn hàng từ 500.000VND</p>
                     </div><!-- End .header-left -->
 
                     <div class="header-right header-dropdowns ml-0 ml-sm-auto w-sm-100">
@@ -67,12 +67,12 @@
                             <a href="#">Links</a>
                             <div class="header-menu">
                                 <ul>
-                                    <li><a href="dashboard.html">My Account</a></li>
-                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="dashboard.html">Tài khoản</a></li>
+                                    <li><a href="about.html">Về Porto</a></li>
                                     <li><a href="blog.html">Blog</a></li>
                                     <li><a href="wishlist.html">My Wishlist</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="login.html" class="login-link">Log In</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="{{ route('login') }}" class="login-link">Đăng nhập</a></li>
                                 </ul>
                             </div><!-- End .header-menu -->
                         </div><!-- End .header-dropown -->
@@ -80,10 +80,10 @@
                         <span class="separator"></span>
 
                         <div class="header-dropdown">
-                            <a href="#"><i class="flag-us flag"></i>ENG</a>
+                            <a href="#"><i class="flag-us flag"></i>VN</a>
                             <div class="header-menu">
                                 <ul>
-                                    <li><a href="#"><i class="flag-us flag mr-2"></i>ENG</a>
+                                    <li><a href="#"><i class="flag-us flag mr-2"></i>VN</a>
                                     </li>
                                     <li><a href="#"><i class="flag-fr flag mr-2"></i>FRA</a></li>
                                 </ul>
@@ -94,7 +94,7 @@
                             <a href="#">USD</a>
                             <div class="header-menu">
                                 <ul>
-                                    <li><a href="#">EUR</a></li>
+                                    <li><a href="#">VND</a></li>
                                     <li><a href="#">USD</a></li>
                                 </ul>
                             </div><!-- End .header-menu -->
@@ -133,7 +133,7 @@
                                         placeholder="Search..." required>
                                     <div class="select-custom">
                                         <select id="cat" name="cat">
-                                            <option value="">All Categories</option>
+                                            <option value="">Danh mục</option>
                                             <option value="4">Fashion</option>
                                             <option value="12">- Women</option>
                                             <option value="13">- Men</option>
@@ -163,8 +163,15 @@
                             <h6><span>Đặt hàng gọi</span><a href="tel:#" class="text-dark font1">091 6643161</a>
                             </h6>
                         </div>
+                        @if (Auth::check())
+                        <a href="" class="header-icon header-icon-user"><i
+                                class="icon-user-2"></i>{{ Auth::user()->name }}</a>
+                    @else
+                        <a href="{{ route('login') }}" class="header-icon header-icon-user"><i
+                                class="icon-user-2"></i></a>
+                    @endif
 
-                        <a href="login.html" class="header-icon" title="login"><i class="icon-user-2"></i></a>
+                        {{-- <a href="{{ route('login') }}" class="header-icon" title="login"><i class="icon-user-2"></i></a> --}}
 
                         <a href="wishlist.html" class="header-icon" title="wishlist"><i
                                 class="icon-wishlist-2"></i></a>
@@ -262,160 +269,116 @@
                 <div class="container">
                     <nav class="main-nav w-100">
                         <ul class="menu">
-                            <li>
-                                <a href="{{ route('index') }}">Home</a>
-                            </li>
-                            <li>
-                                <a href="category.html">Categories</a>
-                                <div class="megamenu megamenu-fixed-width megamenu-3cols">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <a href="#" class="nolink">VARIATION 1</a>
-                                            <ul class="submenu">
-                                                <li><a href="category.html">Fullwidth Banner</a></li>
-                                                <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a>
-                                                </li>
-                                                <li><a href="category-banner-boxed-image.html">Boxed Image Banner</a>
-                                                </li>
-                                                <li><a href="category.html">Left Sidebar</a></li>
-                                                <li><a href="category-sidebar-right.html">Right Sidebar</a></li>
-                                                <li><a href="category-off-canvas.html">Off Canvas Filter</a></li>
-                                                <li><a href="category-horizontal-filter1.html">Horizontal Filter1</a>
-                                                </li>
-                                                <li><a href="category-horizontal-filter2.html">Horizontal Filter2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <a href="#" class="nolink">VARIATION 2</a>
-                                            <ul class="submenu">
-                                                <li><a href="category-list.html">List Types</a></li>
-                                                <li><a href="category-infinite-scroll.html">Ajax Infinite Scroll</a>
-                                                </li>
-                                                <li><a href="category.html">3 Columns Products</a></li>
-                                                <li><a href="category-4col.html">4 Columns Products</a></li>
-                                                <li><a href="category-5col.html">5 Columns Products</a></li>
-                                                <li><a href="category-6col.html">6 Columns Products</a></li>
-                                                <li><a href="category-7col.html">7 Columns Products</a></li>
-                                                <li><a href="category-8col.html">8 Columns Products</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-4 p-0">
-                                            <div class="menu-banner">
-                                                <figure>
-                                                    <img src="{{ asset('frontend/') }}/assets/images/menu-banner.jpg"
-                                                        width="192" height="313" alt="Menu banner">
-                                                </figure>
-                                                <div class="banner-content">
-                                                    <h4>
-                                                        <span class="">UP TO</span><br />
-                                                        <b class="">50%</b>
-                                                        <i>OFF</i>
-                                                    </h4>
-                                                    <a href="category.html" class="btn btn-sm btn-dark">SHOP NOW</a>
-                                                </div>
+                            @foreach ($menus as $item)
+                                @if ($item->alias == 'trang-chu' && $item->is_active == 1)
+                                    <li class="active"><a
+                                            href="{{ route('index') }}"></i>{{ $item->name }}</a>
+                                    </li>
+                                @elseif ($item->alias == 'nam' && $item->is_active == 1)
+                                    <li>
+                                        <a href="#" class="sf-with-ul"></i>{{ $item->name }}</a>
+                                        <div class="megamenu megamenu-fixed-width megamenu-3cols">
+                                            <div class="row">
+                                                @foreach ($parentCategory as $parentItem)
+                                                    @if ($parentItem->menu_id == 2)
+                                                        <div class="col-lg-4">
+                                                            <a href="#"
+                                                                class="nolink pl-0">{{ $parentItem->title }}</a>
+                                                            <ul class="submenu">
+                                                                @foreach ($category as $childItem)
+                                                                    @if ($childItem->parent_id == $parentItem->id && $childItem->is_active == 1)
+                                                                        <li><a
+                                                                                href="{{ route('category.' . $parentItem->alias . '.' . $childItem->alias) }}">{{ $childItem->title }}</a>
+                                                                            {{-- href="#">{{ $childItem->title }}</a> --}}
+                                                                        </li>
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
                                             </div>
                                         </div>
-                                    </div>
-                                </div><!-- End .megamenu -->
-                            </li>
-                            <li>
-                                <a href="product.html">Products</a>
-                                <div class="megamenu megamenu-fixed-width">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <a href="#" class="nolink">PRODUCT PAGES</a>
-                                            <ul class="submenu">
-                                                <li><a href="product.html">SIMPLE PRODUCT</a></li>
-                                                <li><a href="product-variable.html">VARIABLE PRODUCT</a></li>
-                                                <li><a href="product.html">SALE PRODUCT</a></li>
-                                                <li><a href="product.html">FEATURED & ON SALE</a></li>
-                                                <li><a href="product-custom-tab.html">WITH CUSTOM TAB</a></li>
-                                                <li><a href="product-sidebar-left.html">WITH LEFT SIDEBAR</a></li>
-                                                <li><a href="product-sidebar-right.html">WITH RIGHT SIDEBAR</a></li>
-                                                <li><a href="product-addcart-sticky.html">ADD CART STICKY</a></li>
-                                            </ul>
-                                        </div><!-- End .col-lg-4 -->
-
-                                        <div class="col-lg-4">
-                                            <a href="#" class="nolink">PRODUCT LAYOUTS</a>
-                                            <ul class="submenu">
-                                                <li><a href="product-extended-layout.html">EXTENDED LAYOUT</a></li>
-                                                <li><a href="product-grid-layout.html">GRID IMAGE</a></li>
-                                                <li><a href="product-full-width.html">FULL WIDTH LAYOUT</a></li>
-                                                <li><a href="product-sticky-info.html">STICKY INFO</a></li>
-                                                <li><a href="product-sticky-both.html">LEFT & RIGHT STICKY</a></li>
-                                                <li><a href="product-transparent-image.html">TRANSPARENT IMAGE</a></li>
-                                                <li><a href="product-center-vertical.html">CENTER VERTICAL</a></li>
-                                                <li><a href="#">BUILD YOUR OWN</a></li>
-                                            </ul>
-                                        </div><!-- End .col-lg-4 -->
-
-                                        <div class="col-lg-4 p-0">
-                                            <div class="menu-banner menu-banner-2">
-                                                <figure>
-                                                    <img src="{{ asset('frontend/') }}/assets/images/menu-banner-1.jpg"
-                                                        width="182" height="317" alt="Menu banner"
-                                                        class="product-promo">
-                                                </figure>
-                                                <i>OFF</i>
-                                                <div class="banner-content">
-                                                    <h4>
-                                                        <span class="">UP TO</span><br />
-                                                        <b class="">50%</b>
-                                                    </h4>
-                                                </div>
-                                                <a href="category.html" class="btn btn-sm btn-dark">SHOP NOW</a>
+                                        <!-- End .megamenu -->
+                                    </li>
+                                @elseif ($item->alias == 'nu' && $item->is_active == 1)
+                                    <li>
+                                        <a href="#" class="sf-with-ul"></i>{{ $item->name }}</a>
+                                        <div class="megamenu megamenu-fixed-width megamenu-3cols">
+                                            <div class="row">
+                                                @foreach ($parentCategory as $parentItem)
+                                                    @if ($parentItem->menu_id == 3)
+                                                        <div class="col-lg-4">
+                                                            <a href="#"
+                                                                class="nolink pl-0">{{ $parentItem->title }}</a>
+                                                            <ul class="submenu">
+                                                                @foreach ($category as $childItem)
+                                                                    @if ($childItem->parent_id == $parentItem->id && $childItem->is_active == 1)
+                                                                        <li><a
+                                                                                href="{{ route('category.' . $parentItem->alias . '.' . $childItem->alias) }}">{{ $childItem->title }}</a>
+                                                                            {{-- href="#">{{ $childItem->title }}</a> --}}
+                                                                        </li>
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
                                             </div>
-                                        </div><!-- End .col-lg-4 -->
-                                    </div><!-- End .row -->
-                                </div><!-- End .megamenu -->
-                            </li>
-                            <li class="active">
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="cart.html">Shopping Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="dashboard.html">Dashboard</a></li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="#">Blog</a>
+                                        </div>
+                                        <!-- End .megamenu -->
+                                    </li>
+                                @elseif ($item->alias == 'tre-em' && $item->is_active == 1)
+                                    <li>
+                                        <a href="#" class="sf-with-ul"></i>{{ $item->name }}</a>
+
                                         <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="single.html">Blog Post</a></li>
+                                            <li><a href="wishlist.html">Danh sách mong muốn</a></li>
+                                            <li><a href="cart.html">Giỏ hàng</a></li>
+                                            <li><a href="checkout.html">Thanh toán</a></li>
+                                            <li><a href="dashboard.html">Bảng điều khiển</a></li>
+                                            <li><a href="demo1-about.html">Về chúng tôi</a></li>
+                                            <li><a href="#">Blog</a>
+                                                <ul>
+                                                    <li><a href="blog.html">Blog</a></li>
+                                                    <li><a href="single.html">Bài đăng Blog</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="demo1-contact.html">Liên hệ</a></li>
+                                            <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                            <li><a href="forgot-password.html">Quên mật khẩu</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="forgot-password.html">Forgot Password</a></li>
-                                </ul>
+                                @elseif ($item->alias == 'tin-tuc' && $item->is_active == 1)
+                                    <li><a href="blog.html">{{ $item->name }}</a></li>
+                                @elseif ($item->alias == 've-porto' && $item->is_active == 1)
+                                    <li><a href="demo1-about.html">{{ $item->name }}</a></li>
+                                @elseif ($item->alias == 'uu-dai-dac-biet' && $item->is_active == 1)
+                                    <li><a href="#"></i>{{ $item->name }}</a></li>
+                                @endif
+                            @endforeach
+                            {{-- <li>
+                                <a href="{{ route('index') }}">Trang chủ</a>
+                            </li>
+                            <li>
+                                <a href="demo1-shop.html">Danh mục</a>
+                                <!-- Megamenu cho danh mục -->
+                                <!-- Chi tiết các danh mục sản phẩm, các biến thể khác nhau -->
+                            </li>
+                            <li class="active">
+                                <a href="demo1-product.html">Sản phẩm</a>
+                                <!-- Megamenu cho sản phẩm -->
+                                <!-- Các trang sản phẩm khác nhau, các layout và các loại sản phẩm -->
+                            </li>
+                            <li>
+                                <a href="#">Trang</a>
+                                <!-- Các trang phụ như Wishlist, Cart, Checkout, Blog, Contact Us, Login... -->
                             </li>
                             <li><a href="blog.html">Blog</a></li>
-                            <li>
-                                <a href="#">Elements</a>
-                                <ul class="custom-scrollbar">
-                                    <li><a href="element-accordions.html">Accordion</a></li>
-                                    <li><a href="element-alerts.html">Alerts</a></li>
-                                    <li><a href="element-animations.html">Animations</a></li>
-                                    <li><a href="element-banners.html">Banners</a></li>
-                                    <li><a href="element-buttons.html">Buttons</a></li>
-                                    <li><a href="element-call-to-action.html">Call to Action</a></li>
-                                    <li><a href="element-countdown.html">Count Down</a></li>
-                                    <li><a href="element-counters.html">Counters</a></li>
-                                    <li><a href="element-headings.html">Headings</a></li>
-                                    <li><a href="element-icons.html">Icons</a></li>
-                                    <li><a href="element-info-box.html">Info box</a></li>
-                                    <li><a href="element-posts.html">Posts</a></li>
-                                    <li><a href="element-products.html">Products</a></li>
-                                    <li><a href="element-product-categories.html">Product Categories</a></li>
-                                    <li><a href="element-tabs.html">Tabs</a></li>
-                                    <li><a href="element-testimonial.html">Testimonials</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="demo1-contact.html">Liên hệ</a></li>
                             <li class="float-right"><a href="https://1.envato.market/DdLk5" class="pl-5"
-                                    target="_blank">Buy Porto!</a></li>
-                            <li class="float-right"><a href="#" class="pl-5">Special Offer!</a></li>
+                                    target="_blank">Mua Porto!</a></li>
+                            <li class="float-right"><a href="#" class="pl-5">Ưu đãi đặc biệt!</a></li> --}}
                         </ul>
                     </nav>
                 </div><!-- End .container -->
@@ -628,7 +591,7 @@
                                 <a href="dashboard.html">Dashboard</a>
                             </li>
                             <li>
-                                <a href="login.html">Login</a>
+                                <a href="{{ route('login') }}">Login</a>
                             </li>
                             <li>
                                 <a href="forgot-password.html">Forgot Password</a>
@@ -673,12 +636,12 @@
                 </ul>
 
                 <ul class="mobile-menu">
-                    <li><a href="login.html">My Account</a></li>
+                    <li><a href="{{ route('login') }}">My Account</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="wishlist.html">My Wishlist</a></li>
                     <li><a href="cart.html">Cart</a></li>
-                    <li><a href="login.html" class="login-link">Log In</a></li>
+                    <li><a href="{{ route('login') }}" class="login-link">Log In</a></li>
                 </ul>
             </nav><!-- End .mobile-nav -->
 
@@ -715,7 +678,7 @@
             </a>
         </div>
         <div class="sticky-info">
-            <a href="login.html" class="">
+            <a href="{{ route('login') }}" class="">
                 <i class="icon-user-2"></i>Account
             </a>
         </div>

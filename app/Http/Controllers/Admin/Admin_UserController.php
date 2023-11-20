@@ -17,7 +17,8 @@ use App\Http\Requests\LoginAdminRequest;
 
 class Admin_UserController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         // dd('okr');
         return view('blocks.backend.home.login');
     }
@@ -27,45 +28,40 @@ class Admin_UserController extends Controller
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
-            'is_admin' => 1,
-        ];
+            'isAdmin' => 1,
+        ];;
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->route('admin.index');
         } else {
             return redirect()->back()->with('error', 'Sai thông tin đăng nhập');
         }
     }
-    
-        
-        
-    
-    public function logout(){
-        Auth::logout();
-        return redirect() ->route('admin.login');
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 
-    public function register(){
+    public function register()
+    {
         return view('blocks.backend.home.register');
-
     }
 
     // Trong lớp Admin_User (Model)
 
-public function post_register(RegisterAdminRequest $request) {
-    // dd($request->all());
-    $request->merge(['password' => Hash::make($request->password)]);
-    $request->merge(['is_admin' => 1]);
+    public function post_register(RegisterAdminRequest $request)
+    {
+        // dd($request->all());
+        $request->merge(['password' => Hash::make($request->password)]);
+        $request->merge(['is_admin' => 1]);
 
-    try {
-        User::create($request->all());
-        return redirect()->route('admin.login');
-    } catch (\Throwable $th) {
-        dd($th);
+        try {
+            Admin_User::create($request->all());
+            return redirect()->route('admin.login');
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
-}
-
-
-
-    
 }

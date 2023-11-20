@@ -77,7 +77,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="demo1-contact.html">Liên hệ</a></li>
-                                <li><a href="login.html">Đăng nhập</a></li>
+                                <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                                 <li><a href="forgot-password.html">Quên mật khẩu</a></li>
                             </ul>
                         </li>

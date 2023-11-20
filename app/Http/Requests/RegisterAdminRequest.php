@@ -23,7 +23,7 @@ class RegisterAdminRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:admin_user',
             'password' => 'required|min:6|max:32',
             're-password' => 'required|same:password',
             'phone' => 'required',

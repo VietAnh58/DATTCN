@@ -159,7 +159,7 @@
                         </div>
                         <!-- End .header-contact -->
 
-                        <a href="login.html" class="header-icon header-icon-user"><i class="icon-user-2"></i></a>
+                        <a href="{{ route('login') }}" class="header-icon header-icon-user"><i class="icon-user-2"></i></a>
 
                         <a href="wishlist.html" class="header-icon"><i class="icon-wishlist-2"></i></a>
 
@@ -355,7 +355,7 @@
                                                     </ul>
                                                 </li>
                                                 <li><a href="demo1-contact.html">Liên hệ</a></li>
-                                                <li><a href="login.html">Đăng nhập</a></li>
+                                                <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                                                 <li><a href="forgot-password.html">Quên mật khẩu</a></li>
                                             </ul>
                                         </li>
@@ -430,7 +430,7 @@
                         </div>
                         <!-- End .header-search -->
 
-                        <a href="login.html" class="header-icon "><i class="icon-user-2"></i></a>
+                        <a href="{{ route('login') }}" class="header-icon "><i class="icon-user-2"></i></a>
 
                         <a href="wishlist.html" class="header-icon"><i class="icon-wishlist-2"></i></a>
 
@@ -753,7 +753,7 @@
                         </ul>
 
                         <ul class="mobile-menu">
-                            <li><a href="login.html">Tài khoản của tôi</a></li>
+                            <li><a href="{{ route('login') }}">Tài khoản của tôi</a></li>
                             <!-- Các mục khác -->
                         </ul>
 

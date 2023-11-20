@@ -200,10 +200,9 @@ class HomeController extends Controller
     public function ao_ni_nam() {
         $ao_ni_nam = Product::where('category_id', 10)->get();
 
-        $menus = Menu::all();
-
         $one_item = $ao_ni_nam->first();
 
+        $menus = Menu::all();
 
         $parentCategory = ParentCategory::all();
 

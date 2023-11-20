@@ -4,6 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Helper\Cart;
+use App\Models\Category;
+use App\Models\Menu;
+use App\Models\ParentCategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Constraint\Count;
@@ -14,7 +17,12 @@ class CartController extends Controller
     public function index()
     {
 
-        return view('blocks.frontend.product.cart');
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+        return view('blocks.frontend.product.cart', compact('menus','parentCategory', 'category'));
     }
 
     public function add(Request $request, $id)

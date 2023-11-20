@@ -42,28 +42,22 @@ class UserController extends Controller
     //     }
     // }
 
-    public function post_login(LoginUserRequest $request){
-        $user = User::where('email', $request->email)->first();
-    
-        if (!$user) {
-            return redirect()->back()->with('error', 'Đăng nhập không thành công');
-        }
-    
-        if (password_verify($request->password, $user->password)) {
-            session(['user_name' => $user->name]);
-            return redirect()->route('index');
-        } else {
-            return redirect()->back()->with('error', 'Đăng nhập không thành công');
-        }
+    public function post_login(LoginUserRequest $request)
+{
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        return redirect()->route('index');
+    } else {
+        return redirect()->back()->with('error', 'Đăng nhập không thành công');
     }
+}
+
     
 
     public function logout() {
-        // Xóa thông tin liên quan đến người dùng khỏi session
-        session(['user_id' => null, 'user_name' => null]);
-    
-        // Sau khi xóa session, chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
-        return redirect()->route('login'); // hoặc route('home') tùy thuộc vào tên đường dẫn của trang chính
+        Auth::logout();
+        return redirect()->route('login'); 
     }
     
     
