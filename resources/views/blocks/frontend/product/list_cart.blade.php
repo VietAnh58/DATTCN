@@ -7,7 +7,8 @@
             <th class="qty-col">Số lượng</th>
             <th class="total-col">Cập nhật</th>
             <th class="text-right">Tổng thanh toán</th>
-            <th class="text-right "><a href="javascript:" class="btn-remove" title="Remove Product"><span>×</span></a>
+            <th class="text-right "><a href="javascript:" class="btn-remove"
+                    onclick="DeleteAllListItemCart()" title="Remove Product"><span>×</span></a>
             </th>
         </tr>
     </thead>
@@ -21,7 +22,8 @@
                                 <img src="{{ asset('storage/images') }}/{{ $item['productInfo']->image }}"
                                     alt="product" width="80" height="80">
                             </a>
-                            <a href="javascript:" onclick="DeleteListItemCart({{ $item['productInfo']->id }})"
+                            <a href="javascript:"
+                                onclick="DeleteListItemCart({{ $item['productInfo']->id }})"
                                 class="btn-remove" title="Remove Product"><span>×</span></a>
                         </figure>
                     </td>
@@ -31,32 +33,50 @@
                                 href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
                         </h5>
                     </td>
-                    <td>{{ number_format($item['productInfo']->price) }}</td>
+                    <td>
+                        @if ($item['productInfo']->sale_price > 0)
+                            <span
+                                class="old-price">{{ number_format($item['productInfo']->price) }}VND</span>
+                            <span
+                                class="new-price">{{ number_format($item['productInfo']->sale_price) }}VND</span>
+                            {{-- {{ number_format($item['productInfo']->sale_price) }}VND --}}
+                        @else
+                            {{ number_format($item['productInfo']->price) }}VND
+                        @endif
+                    </td>
                     <td>
                         <div class="product-single-qty">
                             <input class="horizontal-quantity form-control" type="text"
                                 data-id="{{ $item['productInfo']->id }}"
-                                id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}"
-                                onchange="UpdateListItemCart({{ $item['productInfo']->id }})">
-
+                                id="quantity-item-{{ $item['productInfo']->id }}"
+                                value="{{ $item['quantity'] }}">
                         </div>
                     </td>
                     <td>
                         <a class="btn btn-sm" href="javascript:"
-                            onclick="UpdateListItemCart({{ $item['productInfo']->id }})">Cập nhật</a>
+                            onclick="UpdateListItemCart({{ $item['productInfo']->id }})">Cập
+                            nhật</a>
                     </td>
-                    <td class = "text-right"><span
-                            class="subtotal-price">{{ number_format($item['productInfo']->price * $item['quantity']) }}VND</span>
+                    <td class = "text-right">
+                        @if ($item['productInfo']->sale_price > 0)
+                            {{ number_format($item['productInfo']->sale_price * $item['quantity']) }}VND
+                        @else
+                            {{ number_format($item['productInfo']->price * $item['quantity']) }}VND
+                        @endif
+                        <span class="subtotal-price">
+                        </span>
                     </td>
                 </tr>
             @endforeach
         @else
-        <table class="table table-cart">
-            <tbody>
-                <td rowspan="6"><h1>khong co san pham</h1></td>
-            </tbody>
-        </table>
-       
+            <table class="table table-cart">
+                <tbody>
+                    <td rowspan="6">
+                        <h1>khong co san pham</h1>
+                    </td>
+
+                </tbody>
+            </table>
         @endif
     </tbody>
 
@@ -67,10 +87,11 @@
                     <div class="cart-discount">
                         <form action="#">
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" placeholder="Coupon Code"
-                                    required>
+                                <input type="text" class="form-control form-control-sm"
+                                    placeholder="Coupon Code" required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-sm" type="submit">Phiếu giảm giá</button>
+                                    <button class="btn btn-sm" type="submit">Phiếu giảm
+                                        giá</button>
                                 </div>
                             </div><!-- End .input-group -->
                         </form>

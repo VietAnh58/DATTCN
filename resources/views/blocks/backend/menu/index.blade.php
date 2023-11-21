@@ -57,6 +57,7 @@
                                 <td colspan="7">Không có menu nào.</td>
                             </tr>
                         @else
+
                             @foreach ($menus as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>

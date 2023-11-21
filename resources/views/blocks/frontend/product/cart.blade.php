@@ -29,7 +29,8 @@
                                         <th class="qty-col">Số lượng</th>
                                         <th class="total-col">Cập nhật</th>
                                         <th class="text-right">Tổng thanh toán</th>
-                                        <th class="text-right "><a href="javascript:" class="btn-remove" title="Remove Product"><span>×</span></a>
+                                        <th class="text-right "><a href="javascript:" class="btn-remove"
+                                                onclick="DeleteAllListItemCart()" title="Remove Product"><span>×</span></a>
                                         </th>
                                     </tr>
                                 </thead>
@@ -43,7 +44,8 @@
                                                             <img src="{{ asset('storage/images') }}/{{ $item['productInfo']->image }}"
                                                                 alt="product" width="80" height="80">
                                                         </a>
-                                                        <a href="javascript:" onclick="DeleteListItemCart({{ $item['productInfo']->id }})"
+                                                        <a href="javascript:"
+                                                            onclick="DeleteListItemCart({{ $item['productInfo']->id }})"
                                                             class="btn-remove" title="Remove Product"><span>×</span></a>
                                                     </figure>
                                                 </td>
@@ -53,34 +55,53 @@
                                                             href="{{ route('detail_product', $item['productInfo']->alias) }}">{{ $item['productInfo']->product_name }}</a>
                                                     </h5>
                                                 </td>
-                                                <td>{{ number_format($item['productInfo']->price) }}</td>
+                                                <td>
+                                                    @if ($item['productInfo']->sale_price > 0)
+                                                        <span
+                                                            class="old-price">{{ number_format($item['productInfo']->price) }}VND</span>
+                                                        <span
+                                                            class="new-price">{{ number_format($item['productInfo']->sale_price) }}VND</span>
+                                                        {{-- {{ number_format($item['productInfo']->sale_price) }}VND --}}
+                                                    @else
+                                                        {{ number_format($item['productInfo']->price) }}VND
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <div class="product-single-qty">
                                                         <input class="horizontal-quantity form-control" type="text"
                                                             data-id="{{ $item['productInfo']->id }}"
-                                                            id="quantity-item-{{ $item['productInfo']->id }}" value="{{ $item['quantity'] }}">
+                                                            id="quantity-item-{{ $item['productInfo']->id }}"
+                                                            value="{{ $item['quantity'] }}">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-sm" href="javascript:"
-                                                        onclick="UpdateListItemCart({{ $item['productInfo']->id }})">Cập nhật</a>
+                                                        onclick="UpdateListItemCart({{ $item['productInfo']->id }})">Cập
+                                                        nhật</a>
                                                 </td>
-                                                <td class = "text-right"><span
-                                                        class="subtotal-price">{{ number_format($item['productInfo']->price * $item['quantity']) }}VND</span>
+                                                <td class = "text-right">
+                                                    @if ($item['productInfo']->sale_price > 0)
+                                                        {{ number_format($item['productInfo']->sale_price * $item['quantity']) }}VND
+                                                    @else
+                                                        {{ number_format($item['productInfo']->price * $item['quantity']) }}VND
+                                                    @endif
+                                                    <span class="subtotal-price">
+                                                    </span>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
-                                    <table class="table table-cart">
-                                        <tbody>
-                                            <td rowspan="6"><h1>khong co san pham</h1></td>
-                                            
-                                        </tbody>
-                                    </table>
-                                    
+                                        <table class="table table-cart">
+                                            <tbody>
+                                                <td rowspan="6">
+                                                    <h1>khong co san pham</h1>
+                                                </td>
+
+                                            </tbody>
+                                        </table>
                                     @endif
                                 </tbody>
-                            
+
                                 <tfoot>
                                     <tr>
                                         <td colspan="5" class="clearfix">
@@ -88,16 +109,17 @@
                                                 <div class="cart-discount">
                                                     <form action="#">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control form-control-sm" placeholder="Coupon Code"
-                                                                required>
+                                                            <input type="text" class="form-control form-control-sm"
+                                                                placeholder="Coupon Code" required>
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-sm" type="submit">Phiếu giảm giá</button>
+                                                                <button class="btn btn-sm" type="submit">Phiếu giảm
+                                                                    giá</button>
                                                             </div>
                                                         </div><!-- End .input-group -->
                                                     </form>
                                                 </div>
                                             </div><!-- End .float-left -->
-                            
+
                                             <div class="float-right edit-all">
                                                 <a href="{{ route('cart.index') }}" class="btn btn-shop btn-update-cart">
                                                     Cập nhật giỏ hàng
@@ -107,7 +129,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            
+
 
                         </div>
                     </div><!-- End .cart-table-container -->
@@ -115,14 +137,14 @@
 
                 <div class="col-lg-4">
                     <div class="cart-summary">
-                        <h3>CART TOTALS</h3>
+                        <h3>Tổng cộng</h3>
 
                         <table class="table table-totals">
                             <tbody>
                                 <tr>
                                     <td>Tổng giá sản phẩm</td>
                                     @if (session()->has('Cart') && session()->get('Cart')->totalQuantity > 0)
-                                        <td>{{ number_format(session()->get('Cart')->totalPrice) }}VND</td>
+                                        <td>{{ number_format(session()->get('Cart')->getTotalPrice()) }}VND</td>
                                     @else
                                         <td>0VND</td>
                                     @endif
@@ -130,21 +152,22 @@
 
                                 <tr>
                                     <td colspan="2" class="text-left">
-                                        <h4>Shipping</h4>
+                                        <h4>Chuyển hàng</h4>
 
                                         <div class="form-group form-group-custom-control">
                                             <div class="custom-control custom-radio">
                                                 <input type="radio" class="custom-control-input" name="radio" checked>
-                                                <label class="custom-control-label">Local pickup</label>
+                                                <label class="custom-control-label">Lấy hàng tại cửa hàng</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-group -->
-
+                                        
                                         <div class="form-group form-group-custom-control mb-0">
                                             <div class="custom-control custom-radio mb-0">
                                                 <input type="radio" name="radio" class="custom-control-input">
-                                                <label class="custom-control-label">Flat rate</label>
+                                                <label class="custom-control-label">Giá cố định</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-group -->
+                                        
 
                                         <form action="#">
                                             <div class="form-group form-group-sm">
@@ -191,7 +214,7 @@
                                 <tr>
                                     <td>Tổng cộng</td>
                                     @if (session()->has('Cart') && session()->get('Cart')->totalQuantity > 0)
-                                        <td>{{ number_format(session()->get('Cart')->getTotalPrice()) }}VND</td>
+                                        <td>{{ number_format(session()->get('Cart')->calculateTotalPrice()) }}VND</td>
                                     @else
                                         <td>0VND</td>
                                     @endif
@@ -200,8 +223,26 @@
                         </table>
 
                         <div class="checkout-methods">
-                            <a href="cart.html" class="btn btn-block btn-dark">Thanh toán
-                                <i class="fa fa-arrow-right"></i></a>
+                            @if (Auth::check())
+                                <form action="{{ route('cart.checkout.loggedin', Auth::user()->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-block btn-dark">Thanh toán <i
+                                            class="fa fa-arrow-right"></i></button>
+                                </form>
+                            @else
+                                <form action="{{ route('cart.checkout.notloggedin') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-block btn-dark">Thanh toán <i
+                                            class="fa fa-arrow-right"></i></button>
+                                </form>
+                            @endif
+
+
+                            {{-- <form action="{{ route('cart.checkout', Auth::user()->id ) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-block btn-dark">Thanh toán<i class="fa fa-arrow-right"></i></button>
+                            </form> --}}
+
                         </div>
                     </div><!-- End .cart-summary -->
                 </div><!-- End .col-lg-4 -->
@@ -283,15 +324,21 @@
         });
 
         function DeleteAllListItemCart() {
-            $.ajax({
-                url: '/deleteAllListCart',
-                type: "GET",
-            }).done(function(response) {
-                RenderListCart(response);
-                alertify.success('Xóa giỏ hàng thành công.');
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                alertify.error('Xảy ra lỗi khi xóa giỏ hàng.');
-            });
+            if (confirm('Xác nhận xóa hết sản phẩm?')) {
+                // Nếu người dùng nhấn "OK" trong hộp thoại xác nhận
+                $.ajax({
+                    url: '/deleteAllListCart',
+                    type: "GET",
+                }).done(function(response) {
+                    RenderListCart(response);
+                    alertify.success('Xóa giỏ hàng thành công.');
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    alertify.error('Xảy ra lỗi khi xóa giỏ hàng.');
+                });
+            } else {
+                // Nếu người dùng nhấn "Cancel" trong hộp thoại xác nhận hoặc đóng nó
+                alert('Hủy xóa giỏ hàng.');
+            }
         }
     </script>
 @endsection
