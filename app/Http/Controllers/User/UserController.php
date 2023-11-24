@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('blocks.frontend.user.login');
     }
 
-    public function register(){
+    public function register()
+    {
 
         return view('blocks.frontend.user.register');
     }
 
-    public function post_register(RegisterUserRequest $request){
+    public function post_register(RegisterUserRequest $request)
+    {
         $request->merge(['password' => Hash::make($request->password)]);
-    
+
         try {
             User::create($request->all());
             return redirect()->route('login');
@@ -33,32 +36,23 @@ class UserController extends Controller
             dd($th);
         }
     }
-    
-    // public function post_login(LoginUserRequest $request){
-    //     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-    //         return redirect()->route('index'); // Đăng nhập thành công
-    //     } else {
-    //         return redirect()->back()->with('error', 'Đăng nhập không thành công');
-    //     }
-    // }
 
     public function post_login(LoginUserRequest $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        return redirect()->route('index');
-    } else {
-        return redirect()->back()->with('error', 'Đăng nhập không thành công');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended(route('index'));
+        } else {
+            return redirect()->back()->with('error', 'Đăng nhập không thành công');
+        }
     }
-}
 
-    
 
-    public function logout() {
+
+    public function logout()
+    {
         Auth::logout();
-        return redirect()->route('login'); 
+        return redirect()->back();
     }
-    
-    
 }

@@ -22,7 +22,7 @@ class CartController extends Controller
         $parentCategory = ParentCategory::all();
 
         $category = Category::all();
-        return view('blocks.frontend.product.cart', compact('menus','parentCategory', 'category'));
+        return view('blocks.frontend.product.cart', compact('menus', 'parentCategory', 'category'));
     }
 
     public function add(Request $request, $id)
@@ -116,4 +116,30 @@ class CartController extends Controller
 
         return view('blocks.frontend.product.list_cart');
     }
+
+    public function loggedin(Request $request, $id)
+    {
+        // $value = $request->session()->get('Cart'); // Lấy đối tượng Cart từ session
+        // $totalPrice = $value->quantity; // Lấy giá trị của thuộc tính 'totalPrice'
+        // $product = $value->products['quantity'];
+
+        $value = $request->session()->get('Cart'); // Lấy đối tượng Cart từ session
+        // $products = $value->products; // Lấy mảng sản phẩm từ đối tượng Cart
+
+        // foreach ($products as $product) {
+        //     $price = $product['price']; // Lấy giá của sản phẩm từ mảng sản phẩm
+        //     // Tiếp tục xử lý giá sản phẩm ở đây
+        //     dd($price);
+        // }
+        
+        if ($value) {
+            $total = $value->getTotalPrice();
+            dd($total); 
+        }else {
+            dd('123');
+            
+        }
+    }
+
+  
 }

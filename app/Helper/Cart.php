@@ -65,7 +65,13 @@ class Cart
 
     public function getTotalPrice()
     {
-        return $this->totalPrice;
+        $totalPrice = 0;
+
+        foreach ($this->products as $product) {
+            $totalPrice += $product['price'];
+        }
+
+        return $totalPrice;
     }
 
     public function getCartContents()
@@ -108,5 +114,16 @@ class Cart
         }
 
         return $totalPrice;
+    }
+
+    public function calculateTotalPriceOfEachProduct()
+    {
+        $totalPriceOfEachProduct = [];
+
+        foreach ($this->products as $id => $product) {
+            $totalPriceOfEachProduct[$id] = $product['quantity'] * $product['productInfo']->price;
+        }
+
+        return $totalPriceOfEachProduct;
     }
 }

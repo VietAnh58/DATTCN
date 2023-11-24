@@ -67,12 +67,19 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <div class="product-single-qty">
+                                                    {{-- <div class="product-single-qty">
                                                         <input class="horizontal-quantity form-control" type="text"
+                                                            data-id="{{ $item['productInfo']->id }}"
+                                                            id="quantity-item-{{ $item['productInfo']->id }}"="{{ $item['quantity'] }}">
+                                                    </div> --}}
+                                                    <div class="product-single-qty">
+                                                        <input class="horizontal-quantity form-control"
+                                                            type="text"
                                                             data-id="{{ $item['productInfo']->id }}"
                                                             id="quantity-item-{{ $item['productInfo']->id }}"
                                                             value="{{ $item['quantity'] }}">
                                                     </div>
+                                                    
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-sm" href="javascript:"
@@ -160,14 +167,14 @@
                                                 <label class="custom-control-label">Lấy hàng tại cửa hàng</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-group -->
-                                        
+
                                         <div class="form-group form-group-custom-control mb-0">
                                             <div class="custom-control custom-radio mb-0">
                                                 <input type="radio" name="radio" class="custom-control-input">
                                                 <label class="custom-control-label">Giá cố định</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-group -->
-                                        
+
 
                                         <form action="#">
                                             <div class="form-group form-group-sm">
@@ -223,26 +230,21 @@
                         </table>
 
                         <div class="checkout-methods">
+                            
                             @if (Auth::check())
-                                <form action="{{ route('cart.checkout.loggedin', Auth::user()->id) }}" method="post">
+                                <form action="{{ route('cart.checkout.loginin', Auth::user()->id) }}" method="post">
                                     @csrf
                                     <button type="submit" class="btn btn-block btn-dark">Thanh toán <i
                                             class="fa fa-arrow-right"></i></button>
                                 </form>
                             @else
-                                <form action="{{ route('cart.checkout.notloggedin') }}" method="post">
+                                <form action="{{ route('cart.checkout.notloginin') }}" method="post">
                                     @csrf
                                     <button type="submit" class="btn btn-block btn-dark">Thanh toán <i
                                             class="fa fa-arrow-right"></i></button>
                                 </form>
                             @endif
-
-
-                            {{-- <form action="{{ route('cart.checkout', Auth::user()->id ) }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-block btn-dark">Thanh toán<i class="fa fa-arrow-right"></i></button>
-                            </form> --}}
-
+                            
                         </div>
                     </div><!-- End .cart-summary -->
                 </div><!-- End .col-lg-4 -->

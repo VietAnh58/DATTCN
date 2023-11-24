@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use App\Http\Requests\CreateMenuRequest;
 
 
+
 class MenuController extends Controller
 {
     /**
@@ -19,6 +20,7 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::all();
+
         return view("blocks.backend.menu.index", compact('menus'));
     }
 

@@ -7,9 +7,9 @@ use App\Http\Controllers\Admin\Admin_UserController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckOutController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserController;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Translation\CatalogueMetadataAwareInterface;
 
@@ -37,10 +37,15 @@ Route::get('/addCart/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/addCartWithQuantity/{id}/{qty}', [CartController::class, 'addCartWithQuantity'])->name('cart.addcart');
 Route::get('/deleteCart/{id}', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('/deleteListCart/{id}', [CartController::class, 'deleteListCart'])->name('cart.deleteList');
-// Route::get('/updateCart/{id}/{qty}', [CartCo ntroller::class, 'updateListCart'])->name('cart.update');
 Route::get('/updateListCart/{id}/{qty}', [CartController::class, 'updateListCart'])->name('cart.updateList');
 Route::get('/deleteAllListCart', [CartController::class, 'deleteAllListCart'])->name('cart.deleteAllListCart');
 Route::post('/updateAllListCart', [CartController::class, 'updateAllListCart'])->name('cart.updateAllList');
+Route::post('/checkout', [CheckOutController::class, 'notloginin'])->middleware('user')->name('cart.checkout.notloginin');
+Route::post('/checkout/{id}', [CheckOutController::class, 'loginin'])->name('cart.checkout.loginin');
+Route::post('/order/{id}', [CheckOutController::class, 'order'])->name('cart.checkout.order');
+
+
+
 
 
 Route::prefix('category')->name('category.')->group(function () {

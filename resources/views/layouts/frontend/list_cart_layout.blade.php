@@ -170,7 +170,7 @@
                             </h6>
                         </div>
                         @if (Auth::check())
-                            <a href="" class="header-icon header-icon-user"><i
+                            <a href="#" class="header-icon header-icon-user"><i
                                     class="icon-user-2"></i>{{ Auth::user()->name }}</a>
                         @else
                             <a href="{{ route('login') }}" class="header-icon header-icon-user"><i

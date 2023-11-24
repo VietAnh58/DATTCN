@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopping_session', function (Blueprint $table) {
+        Schema::create('user_payments', function (Blueprint $table) {
             $table->id();
-            $table->string('session_id')->nullable();
             $table->integer('user_id');
-            $table->integer('total')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('provider')->nullable();
+            $table->string('account_no')->nullable();
+            $table->string('expiry')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shopping_session');
+        Schema::dropIfExists('user_payments');
     }
 };
