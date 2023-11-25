@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function user_address()
     {
-        return $this->hasOne(UserAgent::class, 'user_id');
+        return $this->hasMany(UserAddress::class, 'id', 'user_id');
     }
 }

@@ -14,7 +14,6 @@ class AdminAuthenticate
     {
         
         $admin = Auth::guard('admin')->user();
-        // dd($admin);
         if ($admin && $admin->isAdmin == 1) {
             return $next($request);
         }

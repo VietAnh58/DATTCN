@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
             'cart' => new Cart()
         ]);
     });
+
+    
 }
 
 }

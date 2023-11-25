@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Admin_UserController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckOutController;
@@ -112,6 +113,11 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
         Route::get('restore/{id}', [MenuController::class, 'restore'])->name('restore');
         Route::get('force_delete/{id}', [MenuController::class, 'force_delete'])->name('force_delete');
     });
+    Route::resource('user', UsersController::class)->except(['show']);
+    Route::resource('adminUser', Admin_UserController::class)->except(['show']);
+    Route::get('trash', [Admin_UserController::class, 'trash'])->name('trash');
+        Route::get('restore/{id}', [Admin_UserController::class, 'restore'])->name('restore');
+        Route::get('force_delete/{id}', [Admin_UserController::class, 'force_delete'])->name('force_delete');
 });
 
 // Route::get('/admin', function () {

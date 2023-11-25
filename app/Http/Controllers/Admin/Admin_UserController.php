@@ -17,9 +17,20 @@ use App\Http\Requests\LoginAdminRequest;
 
 class Admin_UserController extends Controller
 {
+    public function index(){
+        $admin = Admin_User::all();
+        return view('blocks.backend.admin_user.index', compact('admin'));
+    }
+
+    // public function edit(Admin_User $admin_user)
+    // {
+    //     $admin = Admin_User::all();
+    //     return view('blocks.backend.product.edit', compact('admin', 'admin_user'));
+    // }
+
+
     public function login()
     {
-        // dd('okr');
         return view('blocks.backend.home.login');
     }
 

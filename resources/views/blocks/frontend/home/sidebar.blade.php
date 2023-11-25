@@ -163,7 +163,7 @@
 
     <div class="widget widget-testimonials">
         <div class="owl-carousel owl-theme dots-left dots-small">
-            <div class="testimonial">
+            {{-- <div class="testimonial">
                 <div class="testimonial-owner">
                     <figure>
                         <img src="{{ asset('frontend/') }}/assets/images/clients/client-1.jpg" alt="khách hàng">
@@ -179,10 +179,10 @@
                 <blockquote class="ml-4 pr-0">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi.</p>
                 </blockquote>
-            </div>
+            </div> --}}
             <!-- Kết thúc .testimonial -->
 
-            <div class="testimonial">
+            {{-- <div class="testimonial">
                 <div class="testimonial-owner">
                     <figure>
                         <img src="{{ asset('frontend/') }}/assets/images/clients/client-2.jpg" alt="khách hàng">
@@ -217,7 +217,7 @@
                 <blockquote class="ml-4 pr-0">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi.</p>
                 </blockquote>
-            </div>
+            </div> --}}
             <!-- Kết thúc .testimonial -->
         </div>
         <!-- Kết thúc .testimonials-slider -->
@@ -225,7 +225,7 @@
 
     <!-- End .widget -->
 
-    <div class="widget widget-posts post-date-in-media media-with-zoom mb-0 mb-lg-2 pb-lg-2">
+    {{-- <div class="widget widget-posts post-date-in-media media-with-zoom mb-0 mb-lg-2 pb-lg-2">
         <div class="owl-carousel owl-theme dots-left dots-m-0 dots-small"
             data-owl-options="
             { 'margin' : 20,
@@ -335,7 +335,7 @@
             </article>
         </div>
         <!-- Kết thúc .posts-slider -->
-    </div>
+    </div> --}}
 
     <!-- End .widget -->
 </aside>

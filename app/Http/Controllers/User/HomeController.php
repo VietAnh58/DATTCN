@@ -10,6 +10,8 @@ use App\Models\ParentCategory;
 use App\Models\Product;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+    
 
 class HomeController extends Controller
 {
@@ -87,7 +89,6 @@ class HomeController extends Controller
 
     public function category() {
         // $products = Product::all();
-        // dd($products);
         $products = Product::paginate(12);
         
         $second_product_images = [];
@@ -107,7 +108,8 @@ class HomeController extends Controller
     }
 
     public function ao_polo() {
-        $ao_polo = Product::where('category_id', 1)->get();
+        $ao_polo = Product::where('category_id', 1)->paginate(12);
+
         $menus = Menu::all();
 
         $one_item = $ao_polo->first();
@@ -119,7 +121,7 @@ class HomeController extends Controller
     }
 
     public function ao_ni() {
-        $ao_ni = Product::where('category_id', 2)->get();
+        $ao_ni = Product::where('category_id', 2)->paginate(12);
         
         $menus = Menu::all();
 
@@ -133,7 +135,7 @@ class HomeController extends Controller
     }
 
     public function ao_len() {
-        $ao_len = Product::where('category_id', 3)->get();
+        $ao_len = Product::where('category_id', 3)->paginate(12);
         $menus = Menu::all();
 
         $one_item = $ao_len->first();
@@ -146,7 +148,7 @@ class HomeController extends Controller
     }
 
     public function quan_au() {
-        $quan_au = Product::where('category_id', 4)->get();
+        $quan_au = Product::where('category_id', 4)->paginate(12);
 
         $menus = Menu::all();
 
@@ -159,7 +161,7 @@ class HomeController extends Controller
     }
 
     public function quan_short() {
-        $quan_short = Product::where('category_id', 5)->get();
+        $quan_short = Product::where('category_id', 5)->paginate(12);
 
         $menus = Menu::all();
 
@@ -172,7 +174,7 @@ class HomeController extends Controller
     }
 
     public function quan_kaki() {
-        $quan_kaki = Product::where('category_id', 7)->get();
+        $quan_kaki = Product::where('category_id', 7)->paginate(12);
 
         $menus = Menu::all();
 
@@ -181,11 +183,11 @@ class HomeController extends Controller
         $parentCategory = ParentCategory::all();
 
         $category = Category::all();
-        return view('blocks.frontend.category.ao_polo_nam', compact('quan_kaki','menus','parentCategory', 'category', 'one_item'));
+        return view('blocks.frontend.category.quan_kaki', compact('quan_kaki','menus','parentCategory', 'category', 'one_item'));
     }
 
     public function ao_khoac_nam() {
-        $ao_khoac_nam = Product::where('category_id', 9)->get();
+        $ao_khoac_nam = Product::where('category_id', 9)->paginate(12);
 
         $one_item = $ao_khoac_nam->first();
 
@@ -198,7 +200,7 @@ class HomeController extends Controller
     }
 
     public function ao_ni_nam() {
-        $ao_ni_nam = Product::where('category_id', 10)->get();
+        $ao_ni_nam = Product::where('category_id', 10)->paginate(12);
 
         $one_item = $ao_ni_nam->first();
 
@@ -211,7 +213,7 @@ class HomeController extends Controller
     }
 
     public function quan_au_nam() {
-        $quan_au_nam = Product::where('category_id', 11)->get();
+        $quan_au_nam = Product::where('category_id', 11)->paginate(12);
 
         $menus = Menu::all();
 
@@ -225,7 +227,7 @@ class HomeController extends Controller
     }
 
     public function quan_kaki_nam() {
-        $quan_kaki_nam = Product::where('category_id', 12)->get();
+        $quan_kaki_nam = Product::where('category_id', 12)->paginate(12);
 
         $menus = Menu::all();
 
@@ -239,7 +241,7 @@ class HomeController extends Controller
     }
 
     public function quan_jeans_nam() {
-        $quan_jeans_nam = Product::where('category_id', 13)->get();
+        $quan_jeans_nam = Product::where('category_id', 13)->paginate(12);
 
         $one_item = $quan_jeans_nam->first();
 
@@ -253,7 +255,7 @@ class HomeController extends Controller
     }
 
     public function ao_polo_nam() {
-        $ao_polo_nam = Product::where('category_id', 8)->get();
+        $ao_polo_nam = Product::where('category_id', 8)->paginate(12);
 
         $one_item = $ao_polo_nam->first();
 

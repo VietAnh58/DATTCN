@@ -7,7 +7,10 @@
         <img src="{{asset('backend/images/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Alexander Pierce</p>
+        @if (Auth::guard('admin')->check())
+          <p>{{ Auth::guard('admin')->user()->name }}</p>
+      @endif
+    
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -46,6 +49,8 @@
           <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-circle-o"></i> Quản lý danh mục</a></li>
           <li><a href="{{ route('admin.product.index') }}"><i class="fa fa-circle-o"></i> Quản lý sản phẩm</a></li>
           <li><a href="{{ route('admin.menu.index') }}"><i class="fa fa-circle-o"></i> Quản lý menu</a></li>
+          <li><a href="{{ route('admin.user.index') }}"><i class="fa fa-circle-o"></i> Quản lý tài khoản người dùng</a></li>
+          <li><a href="{{ route('admin.adminUser.index') }}"><i class="fa fa-circle-o"></i> Quản lý tài khoản quản trị</a></li>
         </ul>
       </li>
       
