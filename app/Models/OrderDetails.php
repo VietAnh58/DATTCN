@@ -12,7 +12,7 @@ class OrderDetails extends Model
     protected $fillable = [
         'user_id',
         'total',
-        'payemnt_id',
+        'note',
     ];
 
     public function order_items()
@@ -28,5 +28,10 @@ class OrderDetails extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function user_payments()
+    {
+        return $this->belongsTo(UserPayment::class, 'user_payment_id', 'id');
     }
 }

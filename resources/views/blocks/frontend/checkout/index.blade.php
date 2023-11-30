@@ -77,7 +77,8 @@
                                     <label>Họ và tên
                                         <abbr class="required" title="required">*</abbr>
                                     </label>
-                                    <input type="text" class="form-control" name="name" />
+                                    <input type="text" class="form-control" name="name"
+                                        value="{{ old('name') ? old('name') : $user->name }}" />
                                 </div>
 
                                 {{-- <div class="form-group">
@@ -89,8 +90,15 @@
                                     <label>Số nhà và tên đường
                                         <abbr class="required" title="required">*</abbr>
                                     </label>
-                                    <input type="text" class="form-control" placeholder="Số nhà và tên đường" required
-                                        name="address_line1" />
+                                    @if ($user_address)
+                                        <input type="text" class="form-control" placeholder="Số nhà và tên đường"
+                                            required name="address_line1"
+                                            value="{{ old('address_line1') ? old('address_line1') : $user_address->address_line1 }}" />
+                                    @else
+                                        <input type="text" class="form-control" placeholder="Số nhà và tên đường"
+                                            required name="address_line1">
+                                    @endif
+
                                 </div>
 
                                 <div class="select-custom">
@@ -98,7 +106,13 @@
                                     <abbr class="required" title="required">*</abbr>
 
                                     <select class="form-control" id="province" name="province" onchange="loadCities()">
-                                        <option value="">Chọn tỉnh/thành </option>
+                                        @if ($user_address)
+                                            <option
+                                                value="{{ old('province') ? old('province') : $user_address->province }}">
+                                                {{ $user_address->province }} </option>
+                                        @else
+                                            <option value="">Chọn tỉnh/thành </option>
+                                        @endif
                                         <option value="Tỉnh Nghệ An">Tỉnh Nghệ An</option>
                                         <option value="tinh2">Tỉnh/Thành phố 2</option>
                                         <!-- Thêm các tỉnh/thành phố khác vào đây -->
@@ -110,7 +124,12 @@
                                     <label for="city">Quận/Huyện:</label>
                                     <abbr class="required" title="required">*</abbr>
                                     <select id="city" name="city" class="form-control" onchange="loadWards()">
-                                        <option value="">Chọn quận/huyện</option>
+                                        @if ($user_address)
+                                            <option value="{{ old('city') ? old('city') : $user_address->city }}">
+                                                {{ $user_address->city }} </option>
+                                        @else
+                                            <option value="">Chọn quận/huyện</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="select-custom">
@@ -118,7 +137,12 @@
                                     <abbr class="required" title="required">*</abbr>
 
                                     <select id="ward" name="ward" class="form-control">
-                                        <option value="">Chọn xã/phường</option>
+                                        @if ($user_address)
+                                            <option value="{{ old('commune') ? old('commune') : $user_address->commune }}">
+                                                {{ $user_address->commune }} </option>
+                                        @else
+                                            <option value="">Chọn xã/phường</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <!-- Các trường thông tin khác -->
@@ -127,14 +151,21 @@
                                     <label>Số điện thoại
                                         <abbr class="required" title="required">*</abbr>
                                     </label>
-                                    <input type="tel" class="form-control" required name="phone_number" />
+                                    @if ($user_address)
+                                        <input type="tel" class="form-control" required name="phone_number"
+                                            value="{{ old('phone_number') ? old('phone_number') : $user_address->phone_number }}" />
+                                    @else
+                                        <input type="tel" class="form-control" required name="phone_number" />
+                                    @endif
+
                                 </div>
 
                                 <div class="form-group">
                                     <label>Địa chỉ email
                                         <abbr class="required" title="required">*</abbr>
                                     </label>
-                                    <input type="email" class="form-control" required name="email" />
+                                    <input type="email" class="form-control" required name="email"
+                                        value="{{ old('email') ? old('email') : $user->email }}" />
                                 </div>
 
                                 <!-- Các trường cho phép tạo tài khoản -->
@@ -181,7 +212,7 @@
                                             <label>Số nhà và tên đường
                                             </label>
                                             <input type="text" class="form-control" placeholder="Số nhà và tên đường"
-                                                 name="order_address_line1" />
+                                                name="order_address_line1" />
                                         </div>
 
                                         <div class="select-custom">
@@ -216,13 +247,13 @@
                                         <div class="form-group">
                                             <label>Số điện thoại
                                             </label>
-                                            <input type="tel" class="form-control"  name="order_phone_number" />
+                                            <input type="tel" class="form-control" name="order_phone_number" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Địa chỉ email
                                             </label>
-                                            <input type="email" class="form-control"  name="order_email" />
+                                            <input type="email" class="form-control" name="order_email" />
                                         </div>
 
                                     </div>
@@ -232,8 +263,8 @@
 
                                 <div class="form-group">
                                     <label class="order-comments">Ghi chú đơn hàng (tuỳ chọn)</label>
-                                    <textarea class="form-control" name="desc" placeholder="Ghi chú về đơn hàng của bạn, ví dụ: ghi chú đặc biệt cho việc giao hàng."
-                                        required>123</textarea>
+                                    <textarea class="form-control" name="note"
+                                        placeholder="Ghi chú về đơn hàng của bạn, ví dụ: ghi chú đặc biệt cho việc giao hàng." required>123</textarea>
                                 </div>
 
                         </li>
@@ -275,8 +306,8 @@
                                         </tr>
                                     @endforeach
                                 @endif
-
                             </tbody>
+
                             <tfoot>
                                 <tr class="cart-subtotal">
 
@@ -290,40 +321,53 @@
                                 </tr>
                                 <tr class="order-shipping">
                                     <td class="text-left" colspan="2">
+                                        <div class="checkout-discount">
+                                            <h4>Have a coupon?
+                                                <button data-toggle="collapse" data-target="#collapseTwo"
+                                                    aria-expanded="true" aria-controls="collapseOne"
+                                                    class="btn btn-link btn-toggle">ENTER YOUR CODE</button>
+                                            </h4>
+
+                                            <div id="collapseTwo" class="collapse">
+                                                <div class="feature-box">
+                                                    <div class="feature-box-content">
+                                                        <p>If you have a coupon code, please apply it below.</p>
+
+                                                        {{-- <form action="#"> --}}
+                                                        <div class="input-group">
+                                                            <input type="text"
+                                                                class="form-control form-control-sm w-auto"
+                                                                placeholder="Coupon code" />
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-sm mt-0" type="submit">
+                                                                    Apply Coupon
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        {{-- </form> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr class="order-shipping">
+                                    <td class="text-left" colspan="2">
                                         <h4 class="m-b-sm">Phương thức thanh toán</h4>
 
-                                        <div class="form-group form-group-custom-control">
-                                            <div class="custom-control custom-radio d-flex">
-                                                <input type="radio" class="custom-control-input" name="paymentMethod"
-                                                    value="card" checked />
-                                                <label class="custom-control-label">Thanh toán qua thẻ thanh toán, ứng dụng
-                                                    ngân hàng VNPAY</label>
+                                        @foreach ($type_payment as $key => $item)
+                                            <div class="form-group form-group-custom-control">
+                                                <div class="custom-control custom-radio d-flex">
+                                                    <input type="radio" class="custom-control-input"
+                                                        name="paymentMethod" value="{{ $item->id }}"
+                                                        @if ($key === 0) checked @endif />
+                                                    <label
+                                                        class="custom-control-label">{{ $item->type_payment_name }}</label>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endforeach
 
-                                        <div class="form-group form-group-custom-control">
-                                            <div class="custom-control custom-radio d-flex">
-                                                <input type="radio" name="paymentMethod" class="custom-control-input"
-                                                    value="vnPayQR" />
-                                                <label class="custom-control-label">Thanh toán qua VNPAY-QR</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-custom-control">
-                                            <div class="custom-control custom-radio d-flex">
-                                                <input type="radio" name="paymentMethod" class="custom-control-input"
-                                                    value="momo" />
-                                                <label class="custom-control-label">Thanh toán qua Ví MoMo</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group-custom-control">
-                                            <div class="custom-control custom-radio d-flex">
-                                                <input type="radio" name="paymentMethod" class="custom-control-input"
-                                                    value="cod" />
-                                                <label class="custom-control-label">Thanh toán khi nhận hàng (COD)</label>
-                                            </div>
-                                        </div>
                                     </td>
                                 </tr>
                                 <tr class="order-total">

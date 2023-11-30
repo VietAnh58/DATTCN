@@ -11,7 +11,7 @@ class UserPayment extends Model
     protected $table = 'user_payments';
     protected $fillable = [
         'user_id',
-        'payment_method',
+        'payment_id',
         'provider',
         'account_no',
         'expiry',
@@ -20,5 +20,15 @@ class UserPayment extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id');
+    }
+
+    public function type_payment()
+    {
+        return $this->belongsTo(TypePayment::class,'payment_id', 'id');
+    }
+
+    public function order_detail()
+    {
+        return $this->belongsTo(OrderDetails::class,'id', 'user_payment_id');
     }
 }

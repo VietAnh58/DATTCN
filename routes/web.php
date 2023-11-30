@@ -41,9 +41,10 @@ Route::get('/deleteListCart/{id}', [CartController::class, 'deleteListCart'])->n
 Route::get('/updateListCart/{id}/{qty}', [CartController::class, 'updateListCart'])->name('cart.updateList');
 Route::get('/deleteAllListCart', [CartController::class, 'deleteAllListCart'])->name('cart.deleteAllListCart');
 Route::post('/updateAllListCart', [CartController::class, 'updateAllListCart'])->name('cart.updateAllList');
-Route::post('/checkout', [CheckOutController::class, 'notloginin'])->middleware('user')->name('cart.checkout.notloginin');
-Route::post('/checkout/{id}', [CheckOutController::class, 'loginin'])->name('cart.checkout.loginin');
+Route::post('/notloginin', [CheckOutController::class, 'notloginin'])->middleware('user')->name('cart.checkout.notloginin');
+Route::post('/loginin', [CheckOutController::class, 'loginin'])->name('cart.checkout.loginin');
 Route::post('/order/{id}', [CheckOutController::class, 'order'])->name('cart.checkout.order');
+Route::get('/order_complete/{id}', [CheckOutController::class, 'order_complete'])->name('cart.checkout.order_complete');
 
 
 

@@ -11,6 +11,8 @@ use App\Models\OrderItems;
 use App\Models\ParentCategory;
 use App\Models\PaymentDetails;
 use App\Models\Shopping_Session;
+use App\Models\TempOrder;
+use App\Models\TypePayment;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\UserPayment;
@@ -27,20 +29,12 @@ class CheckOutController extends Controller
         $parentCategory = ParentCategory::all();
 
         $category = Category::all();
-
-        $value = $request->session()->get('Cart');
-        if ($value) {
-            $total = $value->getTotalPrice();
-            $user = User::find($id);
-            dd($total);
-        } else {
-            dd('123');
-        }
         return view('blocks.frontend.checkout.index', compact('menus', 'parentCategory', 'category'));
     }
 
     public function loginin(Request $request)
     {
+        $id = $request->id;
 
         $menus = Menu::all();
 
@@ -48,7 +42,13 @@ class CheckOutController extends Controller
 
         $category = Category::all();
 
-        return view('blocks.frontend.checkout.index', compact('menus', 'parentCategory', 'category'));
+        $user = User::find($id);
+
+        $user_address = UserAddress::where('user_id', $id)->first();
+
+        $type_payment = TypePayment::all();
+
+        return view('blocks.frontend.checkout.index', compact('menus', 'parentCategory', 'category', 'user', 'user_address','type_payment'));
     }
 
 
@@ -82,7 +82,7 @@ class CheckOutController extends Controller
         }
         $user_payment = new UserPayment;
         $user_payment->user_id = $id;
-        $user_payment->payment_method = $request->paymentMethod;
+        $user_payment->payment_id = $request->paymentMethod;
         // $user_payment->provider;
         // $user_payment->account_no;
         // $user_payment->expiry;
@@ -101,6 +101,8 @@ class CheckOutController extends Controller
         $order_details = new OrderDetails();
         $order_details->user_id = $id;
         $order_details->total = $total;
+        $order_details->note = $request->note;
+        $order_details->user_payment_id = $user_payment->id;
         $order_details->save();
 
         $order_details_id = $order_details->id;
@@ -121,6 +123,32 @@ class CheckOutController extends Controller
         // $payment_details->provider;
         // $payment_details->account_no;
         // $payment_details->status;
-        return redirect()->route('cart.index');
+
+        $temp_order = new TempOrder;
+        $temp_order->user_id = $id;
+        $temp_order->order_id = $order_details->user_id;
+        $temp_order->product_id = $product['productInfo']->id;
+        $temp_order->quantity = $product['quantity'];
+        $temp_order->save();
+
+        return redirect()->route('cart.checkout.order_complete', ['id' => $id]);
+
     }
+
+    public function order_complete($id){
+        $menus = Menu::all();
+
+        $parentCategory = ParentCategory::all();
+
+        $category = Category::all();
+
+        $payment_method = UserPayment::where ('user_id', $id)->latest ()->first ();
+
+        $order_detail = OrderDetails::where ('user_id', $id)->latest ()->first ();
+
+        $shopping_session = Shopping_Session::where('user_id', $id)->latest ()->first ();
+
+        return view('blocks.frontend.checkout.order_complete',compact('menus', 'parentCategory', 'category','payment_method', 'shopping_session', 'order_detail'));
+    }
+
 }

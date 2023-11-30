@@ -17,8 +17,10 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('frontend/') }}/assets/images/icons/favicon.png">
-
-
+    <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+{{--  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
         WebFontConfig = {
             google: {
@@ -179,9 +181,24 @@
 
                         {{-- <a href="{{ route('login') }}" class="header-icon" title="login"><i class="icon-user-2"></i></a> --}}
 
-                        <a href="wishlist.html" class="header-icon" title="wishlist"><i
-                                class="icon-wishlist-2"></i></a>
+                        <a href="wishlist.html" class="header-icon" title="wishlist"><i class="far fa-envelope"></i></a>
+                        
+                        {{-- <div class="dropdown cart-dropdown">
+                            <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                data-display="static">
+                                <i class="far fa-envelope"></i>
+                                @if (Session::has('Cart') && optional(Session::get('Cart'))->totalQuantity !== null)
+                                    <span id="total-quantity-show"
+                                        class="cart-count badge-circle">{{ Session::get('Cart')->totalQuantity }}</span>
+                                @else
+                                    <span id="total-quantity-show" class="cart-count badge-circle">0</span>
+                                @endif
 
+
+
+                            </a>
+                        </div> --}}
                         <div class="dropdown cart-dropdown">
                             <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

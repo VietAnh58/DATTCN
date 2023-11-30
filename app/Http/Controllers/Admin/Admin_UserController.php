@@ -22,11 +22,20 @@ class Admin_UserController extends Controller
         return view('blocks.backend.admin_user.index', compact('admin'));
     }
 
-    // public function edit(Admin_User $admin_user)
-    // {
-    //     $admin = Admin_User::all();
-    //     return view('blocks.backend.product.edit', compact('admin', 'admin_user'));
-    // }
+        public function destroy(string $id)
+        {
+            // dd($admin_user->all()); 
+            $admin_user = Admin_User::find($id);
+            try {
+                $admin_user->delete();
+                return redirect()->route('admin.adminUser.index')->with('success', 'Xóa quản trị viên thành công');
+            } catch (\Throwable $th) {
+                dd($th);
+                return redirect()->back()->with('error', 'Xóa thất bại');
+            }
+        }
+
+  
 
 
     public function login()

@@ -70,13 +70,10 @@
                                             <span class="label label-danger">Đang ẩn</span>
                                         @endif
                                     </td>
-                                    <td colspan="2">
-                                        <a href="#"
-                                            class="btn btn-success">Sửa</a>
-                                    </td>
+                                  
                                     <td>
                                         <form id="delete-form-{{ $item->id }}"
-                                            action="#" method="post">
+                                            action="{{ route('admin.adminUser.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-danger"

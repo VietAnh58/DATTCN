@@ -17,7 +17,9 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('frontend/') }}/assets/images/icons/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script>
         WebFontConfig = {
@@ -61,10 +63,11 @@
             <div class="header-top">
                 <div class="container">
                     <div class="header-left d-none d-sm-block">
-                        <p class="top-message text-uppercase">Miễn phí đổi/trả. Giao hàng tiêu chuẩn cho đơn hàng từ $99+</p>
+                        <p class="top-message text-uppercase">Miễn phí đổi/trả. Giao hàng tiêu chuẩn cho đơn hàng từ
+                            $99+</p>
                     </div>
                     <!-- End .header-left -->
-            
+
                     <div class="header-right header-dropdowns ml-0 ml-sm-auto w-sm-100">
                         <div class="header-dropdown dropdown-expanded d-none d-lg-block">
                             <a href="#">Liên kết</a>
@@ -75,15 +78,19 @@
                                     {{-- <li><a href="blog.html">Blog</a></li> --}}
                                     <li><a href="wishlist.html">Danh sách mong muốn</a></li>
                                     <li><a href="cart.html">Giỏ hàng</a></li>
-                                    <li><a href="login.html" class="login-link">Đăng nhập</a></li>
+                                    @if (Auth::check())
+                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                                    @else
+                                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <!-- End .header-menu -->
                         </div>
                         <!-- End .header-dropown -->
-            
+
                         <span class="separator"></span>
-            
+
                         {{-- <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
                             <a href="#"><i class="flag-us flag"></i>Tiếng Anh</a>
                             <div class="header-menu">
@@ -95,7 +102,7 @@
                             <!-- End .header-menu -->
                         </div> --}}
                         <!-- End .header-dropown -->
-            
+
                         <div class="header-dropdown ">
                             <a href="#">VND</a>
                             <div class="header-menu">
@@ -107,9 +114,9 @@
                             <!-- End .header-menu -->
                         </div>
                         <!-- End .header-dropown -->
-            
+
                         <span class="separator"></span>
-            
+
                         <div class="social-icons">
                             <a href="#" class="social-icon social-facebook icon-facebook" target="_blank"></a>
                             <a href="#" class="social-icon social-twitter icon-twitter" target="_blank"></a>
@@ -121,7 +128,7 @@
                 </div>
                 <!-- End .container -->
             </div>
-            
+
             <!-- End .header-top -->
 
             <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
@@ -145,27 +152,27 @@
                                 <div class="header-search-wrapper">
                                     <input type="search" class="form-control" name="q" id="q"
                                         placeholder="Search..." required>
-                                        <div class="select-custom">
-                                            <select id="cat" name="cat">
-                                                <option value="">Tất cả danh mục</option>
-                                                <option value="4">Thời trang</option>
-                                                <option value="12">- Nữ</option>
-                                                <option value="13">- Nam</option>
-                                                <option value="66">- Trang sức</option>
-                                                <option value="67">- Thời trang trẻ em</option>
-                                                <option value="5">Điện tử</option>
-                                                <option value="21">- Smart TVs</option>
-                                                <option value="22">- Máy ảnh</option>
-                                                <option value="63">- Trò chơi điện tử</option>
-                                                <option value="7">Nhà &amp; Vườn</option>
-                                                <option value="11">Xe hơi</option>
-                                                <option value="31">- Ô tô và Xe tải</option>
-                                                <option value="32">- Xe máy &amp; Xe mô tô</option>
-                                                <option value="33">- Linh kiện &amp; Phụ tùng</option>
-                                                <option value="34">- Thuyền</option>
-                                                <option value="57">- Công cụ &amp; Vật tư ô tô</option>
-                                            </select>
-                                        </div>
+                                    <div class="select-custom">
+                                        <select id="cat" name="cat">
+                                            <option value="">Tất cả danh mục</option>
+                                            <option value="4">Thời trang</option>
+                                            <option value="12">- Nữ</option>
+                                            <option value="13">- Nam</option>
+                                            <option value="66">- Trang sức</option>
+                                            <option value="67">- Thời trang trẻ em</option>
+                                            <option value="5">Điện tử</option>
+                                            <option value="21">- Smart TVs</option>
+                                            <option value="22">- Máy ảnh</option>
+                                            <option value="63">- Trò chơi điện tử</option>
+                                            <option value="7">Nhà &amp; Vườn</option>
+                                            <option value="11">Xe hơi</option>
+                                            <option value="31">- Ô tô và Xe tải</option>
+                                            <option value="32">- Xe máy &amp; Xe mô tô</option>
+                                            <option value="33">- Linh kiện &amp; Phụ tùng</option>
+                                            <option value="34">- Thuyền</option>
+                                            <option value="57">- Công cụ &amp; Vật tư ô tô</option>
+                                        </select>
+                                    </div>
                                     <!-- End .select-custom -->
                                     <button class="btn icon-magnifier p-0" type="submit"></button>
                                 </div>
@@ -180,10 +187,15 @@
                             <h6>Gọi cho chúng tôi<a href="tel:#" class="text-dark font1">091 6643161</a></h6>
                         </div>
 
-                        <a href="{{ route('login') }}" class="header-icon" title="login"><i class="icon-user-2"></i></a>
+                        @if (Auth::check())
+                        <a href="#" class="header-icon header-icon-user"><i
+                                class="icon-user-2"></i>{{ Auth::user()->name }}</a>
+                    @else
+                        <a href="{{ route('login') }}" class="header-icon header-icon-user"><i
+                                class="icon-user-2"></i></a>
+                    @endif
 
-                        <a href="#" class="header-icon" title="wishlist"><i
-                                class="icon-wishlist-2"></i></a>
+                        <a href="#" class="header-icon" title="wishlist"><i class="icon-wishlist-2"></i></a>
 
                         <div class="dropdown cart-dropdown">
                             <a href="#" title="Cart" class="dropdown-toggle dropdown-arrow cart-toggle"
@@ -357,7 +369,12 @@
                                                 </ul>
                                             </li>
                                             <li><a href="demo1-contact.html">Liên hệ</a></li>
-                                            <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                            {{-- <li><a href="{{ route('login') }}">Đăng nhập</a></li> --}}
+                                            @if (Auth::check())
+                                                <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
+                                            @else
+                                                <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                            @endif
                                             <li><a href="forgot-password.html">Quên mật khẩu</a></li>
                                         </ul>
                                     </li>
@@ -892,19 +909,27 @@
                                         <span class="contact-info-label">Địa chỉ:</span> 123 Tên Đường, Thành phố, Anh
                                     </li>
                                     <li>
-                                        <span class="contact-info-label">Điện thoại:</span> <a href="tel:">(123) 456-7890</a>
+                                        <span class="contact-info-label">Điện thoại:</span> <a href="tel:">(123)
+                                            456-7890</a>
                                     </li>
                                     <li>
-                                        <span class="contact-info-label">Email:</span> <a href="https://portotheme.com/cdn-cgi/l/email-protection#83eee2eaefc3e6fbe2eef3efe6ade0ecee"><span class="__cf_email__" data-cfemail="5835393134183d20393528343d763b3735">[email&#160;protected]</span></a>
+                                        <span class="contact-info-label">Email:</span> <a
+                                            href="https://portotheme.com/cdn-cgi/l/email-protection#83eee2eaefc3e6fbe2eef3efe6ade0ecee"><span
+                                                class="__cf_email__"
+                                                data-cfemail="5835393134183d20393528343d763b3735">[email&#160;protected]</span></a>
                                     </li>
                                     <li>
-                                        <span class="contact-info-label">Ngày/Giờ làm việc:</span> Thứ hai - Chủ nhật / 9:00 AM - 8:00 PM
+                                        <span class="contact-info-label">Ngày/Giờ làm việc:</span> Thứ hai - Chủ nhật /
+                                        9:00 AM - 8:00 PM
                                     </li>
                                 </ul>
                                 <div class="social-icons">
-                                    <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
-                                    <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
-                                    <a href="#" class="social-icon social-instagram icon-instagram" target="_blank" title="Instagram"></a>
+                                    <a href="#" class="social-icon social-facebook icon-facebook"
+                                        target="_blank" title="Facebook"></a>
+                                    <a href="#" class="social-icon social-twitter icon-twitter" target="_blank"
+                                        title="Twitter"></a>
+                                    <a href="#" class="social-icon social-instagram icon-instagram"
+                                        target="_blank" title="Instagram"></a>
                                 </div>
                                 <!-- Kết thúc .social-icons -->
                             </div>
@@ -930,7 +955,7 @@
                                 </ul>
                             </div>
                             <!-- Kết thúc .widget -->
-                            
+
                             <!-- End .widget -->
                         </div>
                         <!-- End .col-lg-3 -->
@@ -954,7 +979,7 @@
                                 </div>
                             </div>
                             <!-- Kết thúc .widget -->
-                            
+
                             <!-- End .widget -->
                         </div>
                         <!-- End .col-lg-3 -->
@@ -962,9 +987,11 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="widget widget-newsletter">
                                 <h4 class="widget-title">Đăng ký nhận tin</h4>
-                                <p>Nhận tất cả thông tin mới nhất về sự kiện, khuyến mãi và ưu đãi. Đăng ký nhận tin tức:</p>
+                                <p>Nhận tất cả thông tin mới nhất về sự kiện, khuyến mãi và ưu đãi. Đăng ký nhận tin
+                                    tức:</p>
                                 <form action="#" class="mb-0">
-                                    <input type="email" class="form-control m-b-3" placeholder="Địa chỉ email" required>
+                                    <input type="email" class="form-control m-b-3" placeholder="Địa chỉ email"
+                                        required>
                                     <input type="submit" class="btn btn-primary shadow-none" value="Đăng ký">
                                 </form>
                             </div>
@@ -1209,7 +1236,7 @@
     <script src="{{ asset('frontend/') }}/assets/js/plugins.min.js"></script>
     <script src="{{ asset('frontend/') }}/assets/js/nouislider.min.js"></script>
 
-    
+
     <!-- Main JS File -->
     <script src="{{ asset('frontend/') }}/assets/js/main.min.js"></script>
     <script>
@@ -1256,14 +1283,14 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
 
-<!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 </body>
 
 

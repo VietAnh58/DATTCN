@@ -6,13 +6,13 @@
         <div class="container">
             <ul class="checkout-progress-bar d-flex justify-content-center flex-wrap">
                 <li class="active">
-                    <a href="cart.html">Shopping Cart</a>
+                    <a href="cart.html">Giỏ hàng</a>
                 </li>
                 <li>
-                    <a href="checkout.html">Checkout</a>
+                    <a href="checkout.html">Thanh toán</a>
                 </li>
                 <li class="disabled">
-                    <a href="cart.html">Order Complete</a>
+                    <a href="cart.html">Đơn hàng hoàn tất</a>
                 </li>
             </ul>
 
@@ -73,13 +73,12 @@
                                                             id="quantity-item-{{ $item['productInfo']->id }}"="{{ $item['quantity'] }}">
                                                     </div> --}}
                                                     <div class="product-single-qty">
-                                                        <input class="horizontal-quantity form-control"
-                                                            type="text"
+                                                        <input class="horizontal-quantity form-control" type="text"
                                                             data-id="{{ $item['productInfo']->id }}"
                                                             id="quantity-item-{{ $item['productInfo']->id }}"
                                                             value="{{ $item['quantity'] }}">
                                                     </div>
-                                                    
+
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-sm" href="javascript:"
@@ -147,6 +146,7 @@
                         <h3>Tổng cộng</h3>
 
                         <table class="table table-totals">
+
                             <tbody>
                                 <tr>
                                     <td>Tổng giá sản phẩm</td>
@@ -159,60 +159,11 @@
 
                                 <tr>
                                     <td colspan="2" class="text-left">
-                                        <h4>Chuyển hàng</h4>
-
-                                        <div class="form-group form-group-custom-control">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input" name="radio" checked>
-                                                <label class="custom-control-label">Lấy hàng tại cửa hàng</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .form-group -->
-
-                                        <div class="form-group form-group-custom-control mb-0">
-                                            <div class="custom-control custom-radio mb-0">
-                                                <input type="radio" name="radio" class="custom-control-input">
-                                                <label class="custom-control-label">Giá cố định</label>
-                                            </div><!-- End .custom-checkbox -->
-                                        </div><!-- End .form-group -->
-
-
-                                        <form action="#">
-                                            <div class="form-group form-group-sm">
-                                                <label>Shipping to <strong>NY.</strong></label>
-                                                <div class="select-custom">
-                                                    <select class="form-control form-control-sm">
-                                                        <option value="USA">United States (US)</option>
-                                                        <option value="Turkey">Turkey</option>
-                                                        <option value="China">China</option>
-                                                        <option value="Germany">Germany</option>
-                                                    </select>
-                                                </div><!-- End .select-custom -->
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-group form-group-sm">
-                                                <div class="select-custom">
-                                                    <select class="form-control form-control-sm">
-                                                        <option value="NY">New York</option>
-                                                        <option value="CA">California</option>
-                                                        <option value="TX">Texas</option>
-                                                    </select>
-                                                </div><!-- End .select-custom -->
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-group form-group-sm">
-                                                <input type="text" class="form-control form-control-sm"
-                                                    placeholder="Town / City">
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-group form-group-sm">
-                                                <input type="text" class="form-control form-control-sm"
-                                                    placeholder="ZIP">
-                                            </div><!-- End .form-group -->
-
-                                            <button type="submit" class="btn btn-shop btn-update-total">
-                                                Update Totals
-                                            </button>
-                                        </form>
+                                        <h4 style="font-weight: normal; margin-bottom:10px"><i class="fa-solid fa-ticket" style="font-size: 150%"></i> Sử dụng mã giảm giá ở bước thanh toán</h4><br><br>
+                                        <h4 style="font-weight: normal"><i class="fa-solid fa-shield" style="font-size: 150%"></i> Thông tin bảo mật và mã hóa</h4><br><br>
+                                        <h4><span><i class="fa-solid fa-truck" style="font-size: 150%"></i> Miễn phí vận chuyển:</span><span style="font-weight: normal"> đơn hàng 200k</span></h4><br><br>
+                                        <h4><span><i class="fa-solid fa-clock" style="font-size: 150%"></i> Giao hàng:</span><span style="font-weight: normal">Từ 1 - 3 ngày</span> </h4><br><br>
+                                        <h4><span><i class="fa-solid fa-arrow-right-arrow-left" style="font-size: 150%"></i> Miễn phí đổi trả:</span><span style="font-weight: normal">tại 250+ cửa hàng trong 15 ngày</span> </h4><br><br>    
                                     </td>
                                 </tr>
                             </tbody>
@@ -230,10 +181,11 @@
                         </table>
 
                         <div class="checkout-methods">
-                            
+
                             @if (Auth::check())
-                                <form action="{{ route('cart.checkout.loginin', Auth::user()->id) }}" method="post">
+                                <form action="{{ route('cart.checkout.loginin') }}" method="post">
                                     @csrf
+                                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                                     <button type="submit" class="btn btn-block btn-dark">Thanh toán <i
                                             class="fa fa-arrow-right"></i></button>
                                 </form>
@@ -244,7 +196,7 @@
                                             class="fa fa-arrow-right"></i></button>
                                 </form>
                             @endif
-                            
+
                         </div>
                     </div><!-- End .cart-summary -->
                 </div><!-- End .col-lg-4 -->

@@ -44,6 +44,7 @@ class CategoryController extends Controller
     }
 
     public function edit(Category $category) {
+
         $categories = ParentCategory::all();
         return view('blocks.backend.category.edit', compact('category', 'categories'));
     }

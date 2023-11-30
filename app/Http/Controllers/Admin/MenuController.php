@@ -82,11 +82,12 @@ class MenuController extends Controller
         $menu->link = $request->link;
         $menu->order_number = $request->order_number;
         $menu->is_active = $request->is_active ? 1 : 0;
-
+        
         try {
             $menu->save();
             session()->flash('success', 'Cập nhật menu thành công');
         } catch (\Throwable $th) {
+            dd($th);
             session()->flash('error', 'Lỗi khi cập nhật menu');
         }
 

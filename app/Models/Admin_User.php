@@ -13,7 +13,7 @@ class Admin_User extends Authenticatable {
 
     protected $table = 'admin_user';
 
-    protected $fillable = ['name', 'email', 'password', 'phone'];
+    protected $fillable = ['name', 'email','password', 'phone'];
 
     protected $hidden = [
         'password',
